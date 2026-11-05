@@ -1,31 +1,50 @@
-# Alphex Studios homepage
+# Alphex Studios
 
-A responsive Next.js App Router homepage built with TypeScript and Tailwind CSS. The visual layer uses custom CSS and inline text glyphs for icons; no additional UI, icon, animation, or form libraries are required.
+Full Next.js App Router project for the Alphex Studios website.
 
-## Files
-- `src/app/page.tsx` — homepage sections and interactions
-- `src/app/globals.css` — responsive visual system and layout
-- `src/app/layout.tsx` — metadata and root layout
+## Requirements
 
-## Integrate
-Copy the `src/app` files into your existing Next.js App Router project. Keep your existing `package.json`, Tailwind configuration, and TypeScript configuration.
+- Node.js 20.9 or newer
+- npm
 
-The project assumes Tailwind CSS is already configured. The homepage styles are primarily custom CSS.
+## Run locally
 
-## Replace before launch
-Search for these placeholders:
-- `[WHATSAPP_NUMBER]` — international number, digits only, no plus sign
-- `[EMAIL_ADDRESS]`
-- `[LINKEDIN_URL]`
-- `[INSTAGRAM_URL]`
-- `[PROJECT NAME]`, `[INDUSTRY / CATEGORY]`, project notes and portfolio preview content
-- `[PRICE]` in package cards
+```bash
+npm install
+npm run dev
+```
 
-The quote CTA links to `/get-a-quote`, which must be implemented before launch. Do not advertise form submission until a real lead-delivery endpoint is configured.
+Open http://localhost:3000.
+
+## Production build
+
+```bash
+npm run build
+npm run start
+```
+
+## Deploy to Vercel
+
+1. Push the entire `alphex-studios` folder to the connected GitHub repository.
+2. In Vercel, set **Root Directory** to the folder containing this `package.json` (usually `./`).
+3. Set Framework Preset to **Next.js**.
+4. Leave Build Command and Output Directory at their defaults.
+5. Deploy.
+
+Do not upload only `src/app`. The repository root must contain `package.json`, `next.config.ts`, `tsconfig.json`, `postcss.config.mjs`, and the `src` directory.
+
+## Environment variables
+
+Copy `.env.example` to `.env.local` for local development and configure the matching variables in Vercel Project Settings → Environment Variables. Keep private credentials out of GitHub.
+
+## Before launch
+
+- Replace contact, WhatsApp, social, and project placeholders with verified details.
+- Configure the quote form delivery endpoint and test it end-to-end.
+- Add real portfolio images and project details; do not present concept work as client work.
+- Add privacy and terms pages before collecting personal information.
+- Verify metadata, domain settings, and mobile layouts.
 
 ## Notes
-- Google Fonts are loaded from Google Fonts CSS in `globals.css`. For self-hosting, download and serve the font files locally.
-- WhatsApp URLs are placeholders until configured.
-- The FAQ accordion and mobile overlay use React state.
-- Replace placeholder portfolio cards with real projects or clearly identified concept work.
-- Verify legal pages, contact details, analytics IDs, and consent language before publishing.
+
+The package lock is a minimal npm lockfile seed. Run `npm install` once from the project root to resolve and write the complete dependency tree for your environment; commit the resulting updated `package-lock.json`.
