@@ -536,18 +536,21 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
 /* ============ MOBILE PERFORMANCE + FLUID LAYOUT ============ */
 @media (max-width: 768px), (pointer: coarse){
   .ambient i{animation:none!important;filter:none;opacity:.18}
-  .grain,.goo-wrap{display:none!important}
+  .grain{display:none!important}
   .glass{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 10px 28px rgba(0,0,0,.22)}
   .glass::before{display:none}
-  .hero-lines{opacity:.28}
-  .hero-lines.loop path,.loop path{animation:none!important;stroke-dashoffset:0!important}
-  .hero .blob,.orb,.badge svg,.phone,.toast,.lt,.mq-row,.hm-sun,.hm-tl::after,.hm-tl span b,.ai-vis::before,.price-card.popular::after{animation:none!important;will-change:auto}
-  .hero .blob{opacity:.34}
+  .hero-lines{opacity:1}
+  .loop:not(.hero-lines) path{animation:none!important;stroke-dashoffset:0!important}
+  .mq-row,.ai-vis::before,.price-card.popular::after{animation:none!important;will-change:auto}
   .orb,.phone,.toast,.lt,.badge{filter:none}
   .price-card.popular::after{display:none}
   .nav-progress{box-shadow:none}
-  .hero h1 em{filter:none}
+  .hero h1 em{filter:drop-shadow(0 0 28px rgba(244,231,71,.35))}
   .chip,.hm-art .hc,.orb,.lt div{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .hero .glass{-webkit-backdrop-filter:blur(18px) saturate(170%) brightness(1.04)!important;backdrop-filter:blur(18px) saturate(170%) brightness(1.04)!important}
+  .hero .glass::before{display:block}
+  .hero .win{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 50px 110px -10px rgba(0,0,0,.7),0 0 90px rgba(244,231,71,.12)}
+  .hero .chip,.hero .hm-art .hc,.hero .orb,.hero .lt div{-webkit-backdrop-filter:blur(12px) saturate(150%)!important;backdrop-filter:blur(12px) saturate(150%)!important}
   .card,.price-card,.faq-item,.tl-card,.form-card{transform:none!important}
 }
 @media (max-width: 640px){
@@ -574,7 +577,7 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
   .footer-bottom{font-size:.72rem}
 }
 @media (prefers-reduced-motion: reduce){
-  .hero .blob,.orb,.badge svg,.phone,.toast,.lt,.mq-row,.hm-sun,.hm-tl::after,.hm-tl span b,.ai-vis::before,.price-card.popular::after{animation:none!important}
+  .mq-row,.ai-vis::before,.price-card.popular::after{animation:none!important}
 }
 
 </style>
