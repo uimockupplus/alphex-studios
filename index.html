@@ -56,13 +56,13 @@ transition:transform .5s var(--ease),border-color .3s,box-shadow .4s,background 
 .glass.lift:hover{transform:translateY(-7px);border-color:rgba(244,231,71,.35);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7),inset 0 0 50px rgba(244,231,71,.05),0 40px 80px -14px rgba(0,0,0,.65),0 0 60px rgba(244,231,71,.08)}
 
 /* ============ BUTTONS ============ */
-.btn{position:relative;overflow:hidden;min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 26px;border-radius:999px;border:1px solid rgba(255,255,255,.55);background:linear-gradient(180deg,#fff98a,var(--y) 55%,#e9d92a);color:#14140c;font-weight:700;font-size:.9rem;letter-spacing:-.01em;cursor:pointer;text-align:center;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),inset 0 -6px 14px rgba(190,170,0,.35),0 10px 34px rgba(244,231,71,.3);transition:transform .25s var(--ease),box-shadow .25s}
-.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
-.btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -6px 14px rgba(190,170,0,.35),0 16px 46px rgba(244,231,71,.45)}
-.btn:hover::after{left:130%}
-.btn:active{transform:translateY(0) scale(.99)}
-.btn-ghost{background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.04));color:var(--text);-webkit-backdrop-filter:blur(20px) saturate(170%);backdrop-filter:blur(20px) saturate(170%);border-color:rgba(255,255,255,.24);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(255,255,255,.08),0 10px 30px rgba(0,0,0,.3)}
-.btn-ghost:hover{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 16px 40px rgba(0,0,0,.4)}
+.btn{position:relative;overflow:hidden;min-height:52px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 26px;border-radius:999px;border:1px solid var(--y);background:var(--y);color:#14140c;font-weight:700;font-size:.9rem;letter-spacing:-.01em;cursor:pointer;text-align:center;box-shadow:none;transition:transform .2s var(--ease),background-color .2s,border-color .2s}
+.btn::after{content:none}
+.btn:hover{transform:translateY(-1px);background:#e9dd3c;border-color:#e9dd3c;box-shadow:0 4px 12px rgba(244,231,71,.12)}
+.btn:hover::after{content:none}
+.btn:active{transform:translateY(0)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border-color:rgba(255,255,255,.24);box-shadow:none}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.36);box-shadow:none}
 .btn-sm{min-height:42px;padding:0 20px;font-size:.8rem}
 .text-link{font-size:.88rem;font-weight:650;transition:color .2s}.text-link:hover{color:var(--y)}
 
@@ -79,7 +79,7 @@ transition:transform .5s var(--ease),border-color .3s,box-shadow .4s,background 
 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
 .wi{display:inline-block;transition:transform .95s var(--ease),opacity .95s,filter .95s;transition-delay:calc(var(--i)*65ms)}
 .js [data-kinetic]:not(.in) .wi{transform:translateY(112%) rotate(5deg);opacity:0;filter:blur(8px)}
-.h1 em .wi,[data-kinetic] em .wi{background:linear-gradient(100deg,#fff98a,var(--y) 45%,var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent}
+.h1 em .wi,[data-kinetic] em .wi{background:none;color:var(--y);-webkit-text-fill-color:var(--y)}
 /* reveal / 05 iris */
 [data-reveal]{transition:opacity .8s var(--ease) var(--d,0s),transform .8s var(--ease) var(--d,0s),border-color .3s,box-shadow .4s}
 .js [data-reveal]:not(.in){opacity:0;transform:translateY(28px)}
@@ -141,7 +141,7 @@ html:not(.js) .intro{display:none}
 .hero-lines path{fill:none;stroke-width:1.3}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:clamp(24px,4vw,64px);align-items:center;position:relative;z-index:2}
 .hero h1{font-family:var(--head);font-size:clamp(3rem,6.2vw,6rem);line-height:.97;letter-spacing:-.06em;font-weight:600;margin:0 0 26px}
-.hero h1 em{filter:drop-shadow(0 0 28px rgba(244,231,71,.35))}
+.hero h1 em{color:var(--y);filter:none}
 .hero-sub{max-width:540px;margin:0;color:#cbcbc2;font-size:clamp(1rem,1.5vw,1.14rem);line-height:1.8}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
@@ -458,8 +458,8 @@ html:not(.js) .intro{display:none}
 .faq-q[aria-expanded="true"] svg{transform:rotate(135deg)}
 .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
 .faq-a>div{overflow:hidden;min-height:0;padding:0 56px 0 24px;color:var(--muted);font-size:.92rem;line-height:1.75}
-.faq-q[aria-expanded="true"]+.faq-a{grid-template-rows:1fr}
-.faq-q[aria-expanded="true"]+.faq-a>div{padding-bottom:22px}
+.faq-item.is-open .faq-a{grid-template-rows:1fr}
+.faq-item.is-open .faq-a>div{padding-bottom:22px}
 
 /* ============ FINAL CTA + CONTACT ============ */
 .final{position:relative;text-align:center;padding:clamp(60px,9vw,120px) 24px;border-radius:44px;overflow:hidden}
@@ -532,6 +532,51 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
   .js [data-kinetic]:not(.in) .wi,.js [data-reveal]:not(.in){opacity:1;transform:none;filter:none}.js [data-iris]:not(.in){clip-path:none}
   .js .draw *:not(.nf){stroke-dashoffset:0}.js .loop path{stroke-dashoffset:0}
 }
+
+/* ============ MOBILE PERFORMANCE + FLUID LAYOUT ============ */
+@media (max-width: 768px), (pointer: coarse){
+  .ambient i{animation:none!important;filter:none;opacity:.18}
+  .grain,.goo-wrap{display:none!important}
+  .glass{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+  .glass::before{display:none}
+  .hero-lines{opacity:.28}
+  .hero-lines.loop path,.loop path{animation:none!important;stroke-dashoffset:0!important}
+  .hero .blob,.orb,.badge svg,.phone,.toast,.lt,.mq-row,.hm-sun,.hm-tl::after,.hm-tl span b,.ai-vis::before,.price-card.popular::after{animation:none!important;will-change:auto}
+  .hero .blob{opacity:.34}
+  .orb,.phone,.toast,.lt,.badge{filter:none}
+  .price-card.popular::after{display:none}
+  .nav-progress{box-shadow:none}
+  .hero h1 em{filter:none}
+  .chip,.hm-art .hc,.orb,.lt div{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .card,.price-card,.faq-item,.tl-card,.form-card{transform:none!important}
+}
+@media (max-width: 640px){
+  .container{width:calc(100% - 32px)}
+  .section{padding:72px 0}
+  .nav{top:8px;width:calc(100% - 16px);height:58px;padding:0 8px 0 14px}
+  .brand{font-size:.98rem}
+  .hero{padding:108px 0 56px;min-height:auto}
+  .hero-grid{gap:24px}
+  .hero h1{font-size:clamp(2.6rem,12vw,3.8rem)}
+  .hero-actions{gap:10px}
+  .hero-actions .btn{width:100%}
+  .stage{width:100%;max-width:560px}
+  .win{border-radius:18px}
+  .tabs{padding-bottom:8px}
+  .tab{min-width:min(82vw,320px)}
+  .faq{gap:10px}
+  .faq-item{border-radius:18px}
+  .faq-q{padding:17px 16px;font-size:.93rem;gap:12px}
+  .faq-a>div{padding-inline:16px;font-size:.88rem}
+  .faq-item.is-open .faq-a>div{padding-bottom:18px}
+  .form-actions .btn{width:100%}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px 18px}
+  .footer-bottom{font-size:.72rem}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero .blob,.orb,.badge svg,.phone,.toast,.lt,.mq-row,.hm-sun,.hm-tl::after,.hm-tl span b,.ai-vis::before,.price-card.popular::after{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -774,12 +819,12 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
 <section class="section" id="faq"><div class="container">
   <div class="head"><p class="l3"><i></i><span class="tw" data-typewriter='["FAQ"]'></span></p><h2 data-kinetic>Frequently asked <em>questions</em></h2></div>
   <div class="faq" data-stagger>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">How long does a website take?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div>A landing page usually takes 3–5 days. A business website typically takes 7–12 days. E-commerce and custom projects depend on scope.</div></div></div>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">How much does a website cost?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div>Landing pages start at ₹9,999, business websites at ₹19,999, and e-commerce stores at ₹49,999. We share a fixed quote after understanding your requirements.</div></div></div>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Do you use AI to build websites?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div>Yes. We use AI to speed up research, wireframes, content drafts, and development. Our team reviews, refines, tests, and finalizes every website.</div></div></div>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Do you have client projects yet?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div>Alphex Studios is newly launched. We are currently accepting a limited number of founding-client projects. Our website, process, and concept designs demonstrate our approach; client projects will be added to our work section with permission after launch.</div></div></div>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">Can you redesign my existing website?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div>Yes. We can improve the design, speed, mobile experience, SEO, and conversion flow without losing your existing content or search rankings.</div></div></div>
-    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Do you provide maintenance?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div>Yes. Our care plans include updates, backups, security checks, uptime monitoring, and content edits.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">How long does a website take?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1" aria-hidden="true" inert><div>A landing page usually takes 3–5 days. A business website typically takes 7–12 days. E-commerce and custom projects depend on scope.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">How much does a website cost?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2" aria-hidden="true" inert><div>Landing pages start at ₹9,999, business websites at ₹19,999, and e-commerce stores at ₹49,999. We share a fixed quote after understanding your requirements.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Do you use AI to build websites?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3" aria-hidden="true" inert><div>Yes. We use AI to speed up research, wireframes, content drafts, and development. Our team reviews, refines, tests, and finalizes every website.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Do you have client projects yet?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4" aria-hidden="true" inert><div>Alphex Studios is newly launched. We are currently accepting a limited number of founding-client projects. Our website, process, and concept designs demonstrate our approach; client projects will be added to our work section with permission after launch.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">Can you redesign my existing website?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5" aria-hidden="true" inert><div>Yes. We can improve the design, speed, mobile experience, SEO, and conversion flow without losing your existing content or search rankings.</div></div></div>
+    <div class="glass faq-item"><h3><button class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Do you provide maintenance?<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14"/></svg></button></h3><div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6" aria-hidden="true" inert><div>Yes. Our care plans include updates, backups, security checks, uptime monitoring, and content edits.</div></div></div>
   </div>
 </div></section>
 
@@ -788,13 +833,13 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
   <div class="final glass" data-iris><span class="final-bg" aria-hidden="true">MAKE IT MATTER.</span>
     <h2 data-kinetic>Ready to build a website that <em>works</em> for your business?</h2>
     <p>Tell us about your project. We’ll recommend the right website structure, timeline, and budget.</p>
-    <div class="hero-actions"><a class="btn" href="#contact">Get a Free Website Quote</a><a class="btn btn-ghost" href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
+    <div class="hero-actions"><a class="btn" href="#contact">Get a Free Website Quote</a><a class="btn btn-ghost" href="https://wa.me/919182419070" target="_blank" rel="noopener">Chat on WhatsApp</a></div>
   </div>
 </div></section>
 
 <!-- ===================== CONTACT ===================== -->
 <section class="section" id="contact"><div class="container"><div class="contact-grid">
-  <div class="contact-aside"><p class="l3"><i></i><span>Contact</span></p><h2 class="h2" data-kinetic>Get a free <em>website quote</em></h2><p data-reveal>Tell us a little about your project. We’ll reply with a clear recommendation, timeline, and estimate.</p><p data-reveal>Prefer WhatsApp? Send us a message and tell us what you’re looking to build.</p><a class="btn btn-ghost" href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" rel="noopener">Chat on WhatsApp</a><p class="form-note" style="margin-top:20px">Your details will only be used to respond to your enquiry.</p></div>
+  <div class="contact-aside"><p class="l3"><i></i><span>Contact</span></p><h2 class="h2" data-kinetic>Get a free <em>website quote</em></h2><p data-reveal>Tell us a little about your project. We’ll reply with a clear recommendation, timeline, and estimate.</p><p data-reveal>Prefer WhatsApp? Send us a message and tell us what you’re looking to build.</p><a class="btn btn-ghost" href="https://wa.me/919182419070" target="_blank" rel="noopener">Chat on WhatsApp</a><p class="form-note" style="margin-top:20px">Your details will only be used to respond to your enquiry.</p></div>
   <form class="form-card glass" id="quote-form" novalidate data-reveal>
     <!-- Connect this form to Formspree, EmailJS, Web3Forms, or your own API before launch. -->
     <div class="form-grid">
@@ -808,7 +853,7 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
       <div class="field full"><label for="details">Project details <span class="req" aria-hidden="true">*</span></label><textarea id="details" name="details" required aria-required="true" minlength="15" aria-describedby="details-error" placeholder="What do you want your website to help your business achieve?"></textarea><span class="field-error" id="details-error"></span></div>
     </div>
     <p class="form-note"><span class="req">*</span> Required fields. Your details will only be used to respond to your enquiry.</p>
-    <div class="form-actions"><button class="btn" type="submit">Send my quote request</button><a class="text-link" href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" rel="noopener">Or chat on WhatsApp →</a></div>
+    <div class="form-actions"><button class="btn" type="submit">Send my quote request</button><a class="text-link" href="https://wa.me/919182419070" target="_blank" rel="noopener">Or chat on WhatsApp →</a></div>
     <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
   </form>
 </div></div></section>
@@ -819,9 +864,9 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:56px 0 26px;background:
     <div class="footer-about"><a class="brand" href="#home">Alphex <b>Studios</b></a><p>Alphex Studios designs and builds fast, modern, conversion-focused websites for startups, local businesses, and growing brands.</p><a class="text-link" href="https://alphexai.com">A division of Alphex AI</a></div>
     <div class="footer-col"><h3>Services</h3><a href="#services">Website design</a><a href="#services">Landing pages</a><a href="#services">E-commerce</a><a href="#services">Web apps &amp; portals</a><a href="#services">SEO &amp; maintenance</a></div>
     <div class="footer-col"><h3>Quick links</h3><a href="#work">Work</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></div>
-    <div class="footer-col"><h3>Get in touch</h3><a href="mailto:[EMAIL]">[EMAIL]</a><a href="https://wa.me/[WHATSAPP_NUMBER]" target="_blank" rel="noopener">WhatsApp</a><a href="[SOCIAL LINK]">Social link</a></div>
+    <div class="footer-col"><h3>Get in touch</h3><a href="mailto:team@alphexai.com">team@alphexai.com</a><a href="https://wa.me/919182419070" target="_blank" rel="noopener">WhatsApp</a></div>
   </div>
-  <div class="footer-bottom"><span>© 2026 Alphex Studios. All rights reserved.</span><div class="footer-legal"><a href="[PRIVACY POLICY URL]">Privacy Policy</a><a href="[TERMS OF SERVICE URL]">Terms of Service</a></div></div>
+  <div class="footer-bottom"><span>© 2026 Alphex Studios. All rights reserved.</span></div>
 </div></footer>
 
 <script>
@@ -874,7 +919,7 @@ $$('[data-typewriter]').forEach(el=>{
   const o=new IntersectionObserver(es=>{if(es[0].isIntersecting){o.disconnect();start()}},{threshold:.5});o.observe(el)});
 
 /* liquid glass light follows pointer */
-document.addEventListener('pointermove',e=>{const g=e.target.closest&&e.target.closest('.glass');if(!g)return;const r=g.getBoundingClientRect();g.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');g.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%')},{passive:true});
+if(matchMedia('(hover:hover) and (pointer:fine)').matches)document.addEventListener('pointermove',e=>{const g=e.target.closest&&e.target.closest('.glass');if(!g)return;const r=g.getBoundingClientRect();g.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');g.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%')},{passive:true});
 
 /* hero parallax + liquid blob follower */
 const hero=$('.hero');
@@ -917,7 +962,7 @@ tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i,true));t.addEventLi
 tabs.forEach(t=>t.addEventListener('animationend',e=>{if(e.target.classList.contains('tab-bar'))select((cur+1)%4)}));
 
 /* FAQ */
-$$('.faq-q').forEach(b=>b.addEventListener('click',()=>{const ex=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!ex))}));
+$$('.faq-q').forEach(b=>b.addEventListener('click',()=>{const wasOpen=b.getAttribute('aria-expanded')==='true';const item=b.closest('.faq-item');const panel=document.getElementById(b.getAttribute('aria-controls'));const open=!wasOpen;b.setAttribute('aria-expanded',String(open));item.classList.toggle('is-open',open);panel.setAttribute('aria-hidden',String(!open));panel.inert=!open}));
 
 /* form */
 const form=$('#quote-form');
