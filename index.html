@@ -859,6 +859,29 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(0,0,0,.35),in
 .icon,.tab-ic{box-shadow:none}
 .ripple{background:rgba(244,231,71,.22)}
 .mobile-menu .mm-close,.burger{background:rgba(14,15,11,.6)}
+
+/* Mobile performance and layout: preserve hero and desktop Motion Language animation systems. */
+@media (max-width: 760px){
+  #motion{display:none}
+  .mobile-menu a[href="#motion"]{display:none}
+  /* Lessen costly ambient blur work on touch devices without affecting the animated hero artwork. */
+  .ambient i{animation:none;filter:blur(30px);opacity:.35}
+  .grain{opacity:.035}
+  .glass{-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}
+  .nav.glass,.dock.glass{-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%)}
+  .mq-row{will-change:transform}
+  .section{content-visibility:auto;contain-intrinsic-size:auto 760px}
+}
+@media (max-width: 420px){
+  .hero-grid{gap:24px}
+  .hero-actions{gap:10px}
+  .hero-actions .btn{padding-inline:16px}
+  .mq-row span{font-size:clamp(2.25rem,10vw,2.6rem)}
+}
+/* Keep decorative non-hero/non-Motion animations calmer; key brand motion remains intact. */
+@media (min-width: 761px){
+  .ambient i{animation-duration:40s}
+}
 </style>
 </head>
 <body>
@@ -1336,7 +1359,11 @@ if(fine&&!rm){
 const mtIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('live',e.isIntersecting)),{threshold:.2});
 $$('.mt').forEach(t=>mtIO.observe(t));
 const cn=$('#cnt18');
-if(cn&&!rm){const tile=cn.closest('.mt');(function frame(t){if(tile.classList.contains('live')){const p=(t%4400)/4400,q=Math.min(1,p/.55),e=1-Math.pow(1-q,3);cn.textContent=Math.round(18*e)+'+'}requestAnimationFrame(frame)})(0)}
+if(cn&&!rm){
+  const tile=cn.closest('.mt');let countRaf=0;
+  const countFrame=t=>{if(!tile.classList.contains('live')){countRaf=0;return}const p=(t%4400)/4400,q=Math.min(1,p/.55),e=1-Math.pow(1-q,3);cn.textContent=Math.round(18*e)+'+';countRaf=requestAnimationFrame(countFrame)};
+  const countIO=new IntersectionObserver(es=>{if(es[0].isIntersecting&&!countRaf)countRaf=requestAnimationFrame(countFrame);else if(!es[0].isIntersecting&&countRaf){cancelAnimationFrame(countRaf);countRaf=0}},{threshold:.2});countIO.observe(tile);
+}
 const cv=$('#pc');
 if(cv){
   const ctx=cv.getContext('2d');let W=0,H=0,P=[],raf=0,vis=false;const mouse={x:-999,y:-999};
@@ -1371,8 +1398,12 @@ if(sw&&fine&&!rm){sw.addEventListener('pointermove',e=>{const r=sw.getBoundingCl
 const railA=$$('.rail a'),railT=railA.map(a=>$(a.getAttribute('href')));
 function railSpy(){const vh=innerHeight;let on=0;railT.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<vh*.45)on=i});railA.forEach((a,i)=>a.classList.toggle('on',i===on))}
 addEventListener('scroll',railSpy,{passive:true});railSpy();
-/* marquee speeds up with scroll velocity */
-if(!rm){const rows=$$('.mq-row');let lastY=scrollY,vel=0,rate=1;(function mq(){const y=scrollY;vel=vel*.88+(y-lastY)*.12;lastY=y;const target=1+Math.min(9,Math.abs(vel)/5);rate+=(target-rate)*.12;rows.forEach(r=>{const a=r.getAnimations()[0];if(a)a.playbackRate=rate});requestAnimationFrame(mq)})()}
+/* marquee remains continuously animated; scroll velocity briefly boosts its playback rate without a permanent RAF loop */
+if(!rm){
+  const rows=$$('.mq-row');let lastY=scrollY,resetTimer=0;
+  const setRate=rate=>rows.forEach(r=>{const a=r.getAnimations()[0];if(a)a.playbackRate=rate});
+  addEventListener('scroll',()=>{const y=scrollY,velocity=Math.abs(y-lastY);lastY=y;setRate(1+Math.min(5,velocity/8));clearTimeout(resetTimer);resetTimer=setTimeout(()=>setRate(1),180)},{passive:true});
+}
 })();
 </script>
 </body>
