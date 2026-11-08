@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Alphex Studio | Beyond Design. Built to Perform</title>
+<title>Alphex Studio | Turn clicks into clients</title>
 <meta name="description" content="Alphex Studio designs fast, modern, conversion-focused websites for startups, local businesses, and growing brands in India.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Alphex Studio | Beyond Design. Built to Perform">
+<meta property="og:title" content="Alphex Studio | Turn clicks into clients">
 <meta property="og:description" content="AI-assisted web design and development for startups, local businesses, and growing brands.">
 <meta property="og:url" content="https://studio.alphexai.com/">
 <meta name="theme-color" content="#06070A">
@@ -867,12 +867,11 @@ box-shadow:inset 0 1px 0 rgba(255,255,255,.13),inset 0 -1px 0 rgba(0,0,0,.35),in
 html,body{overflow-x:hidden}
 @supports (overflow:clip){html,body{overflow-x:clip}}
 /* skip rendering of sections far from the viewport */
-#motion,#work,#pricing,#contact,footer{content-visibility:auto;contain-intrinsic-size:auto 1200px}
-#motion{contain-intrinsic-size:auto 2500px}#work{contain-intrinsic-size:auto 1300px}#pricing{contain-intrinsic-size:auto 1175px}#contact{contain-intrinsic-size:auto 980px}footer{contain-intrinsic-size:auto 380px}
+.section,footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
 /* hidden concept sites cost nothing */
 .site:not(.is-on):not(.was){display:none}
 /* pause loops when off-screen */
-.hero.off *,.hero.off *::before,.hero.off *::after,.marquee.off .mq-row{animation-play-state:paused!important}
+.off *,.off *::before,.off *::after{animation-play-state:paused!important}
 .hero .blob,.hero .win,.hero .stage,.mq-row{will-change:transform}
 .nav,.dock{will-change:transform}
 
@@ -901,47 +900,6 @@ html,body{overflow-x:hidden}
   @keyframes siteIris{from{opacity:0}to{opacity:1}}
   .mt-st{perspective:none}
 }
-
-/* =====================================================================
-   V8 — buttery mobile
-   ===================================================================== */
-.nav-progress{transform:scaleX(0);will-change:transform}
-@supports (height:100lvh){.ambient{height:100lvh;bottom:auto}}
-@media(max-width:900px){
-  /* the 18 motion tiles become a swipe row instead of 5,800px of scrolling */
-  .mt-grid{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;margin-inline:calc(var(--gut)*-1);padding:2px var(--gut) 14px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
-  .mt-grid::-webkit-scrollbar{display:none}
-  .mt{flex:0 0 min(78vw,300px);scroll-snap-align:center}
-  #motion{contain-intrinsic-size:auto 900px}#work{contain-intrinsic-size:auto 1100px}#pricing{contain-intrinsic-size:auto 2460px}#contact{contain-intrinsic-size:auto 1640px}footer{contain-intrinsic-size:auto 1030px}
-  /* marquee: one lighter row, no outlined text (outlines are costly to rasterise) */
-  .mq-row.rev{display:none}
-  .mq-row span{font-size:clamp(2.4rem,11vw,3.4rem);-webkit-text-stroke:0;color:rgba(255,255,255,.13)}
-  .mq-row span.fill{color:var(--y)}
-  .marquee{padding:22px 0 0}
-  .mq-row,.hero .blob,.hero .win,.hero .stage{will-change:auto}
-  .hero .blob{will-change:transform}
-  /* cheaper hero mockup loops */
-  .hm-tl span b{animation:none}
-  .hm-tl::after{animation:none;transform:scaleX(1)}
-  /* instant tap feedback instead of ripples */
-  .btn:active,.lift:active,.tab:active{transform:scale(.985)}
-}
-@media(min-width:1061px){.hero h1{font-size:clamp(3rem,.4rem + 4.3vw,5rem)}}
-
-/* =====================================================================
-   V9 — alternating hero headline (mask reveal + kinetic rise)
-   ===================================================================== */
-.hero h1.hstack{display:grid;font-size:clamp(2.2rem,12.4vw,4.4rem);line-height:.98;letter-spacing:-.055em;margin:0 0 26px}
-@media(min-width:1061px){.hero h1.hstack{font-size:clamp(2.8rem,.2rem + 5.1vw,5.2rem)}}
-.hset{grid-area:1/1;display:block}
-.hset.a{--o:1.9s}.hset.b{--o:6.4s}
-.hl{display:block;position:relative;overflow:hidden;padding-bottom:.17em;margin-bottom:-.07em}
-.hl>span{display:block;opacity:0;animation:hlT 9s var(--ease) infinite backwards;animation-delay:calc(var(--o) + var(--l)*.16s)}
-.hl::after{content:"";position:absolute;left:0;right:0;top:0;bottom:.17em;background:var(--y);transform:scaleX(0);transform-origin:left;animation:hlB 9s var(--ease) infinite backwards;animation-delay:calc(var(--o) + var(--l)*.16s);pointer-events:none}
-.hstack em{color:var(--y)}
-@keyframes hlT{0%,4.4%{opacity:0;transform:none}4.5%,40%{opacity:1;transform:none}48%{opacity:1;transform:translateY(-108%)}48.1%,100%{opacity:0;transform:none}}
-@keyframes hlB{0%{transform:scaleX(0);transform-origin:left}4.5%{transform:scaleX(1);transform-origin:left}4.6%{transform:scaleX(1);transform-origin:right}11%,100%{transform:scaleX(0);transform-origin:right}}
-@media(prefers-reduced-motion:reduce){.hset.b{display:none}.hl>span{animation:none!important;opacity:1}.hl::after{display:none}}
 </style>
 </head>
 <body>
@@ -984,10 +942,7 @@ html,body{overflow-x:hidden}
     <div class="hero-copy">
       <!-- 06 typewriter inside 02 lower-third -->
       <p class="l3"><i></i><span class="tw tw-min" data-typewriter='["Custom web design","Mobile-first. SEO-ready.","Built to convert"]'></span></p>
-      <h1 class="hstack" aria-label="Your vision. Our digital craft. Beyond design. Built to perform.">
-        <span class="hset a" aria-hidden="true"><span class="hl" style="--l:0"><span>Your vision.</span></span><span class="hl" style="--l:1"><span>Our digital <em>craft.</em></span></span></span>
-        <span class="hset b" aria-hidden="true"><span class="hl" style="--l:0"><span>Beyond design.</span></span><span class="hl" style="--l:1"><span>Built to <em>perform.</em></span></span></span>
-      </h1>
+      <h1 data-kinetic>Turn clicks into <em>clients.</em></h1>
       <p class="hero-sub" data-reveal>Fast, modern, conversion-focused websites — with AI to capture your leads.</p>
       <div class="hero-actions" data-reveal style="--d:.1s"><a class="btn" href="#contact">Get a Free Website Quote</a><a class="btn btn-ghost" href="#work">See What We Build</a></div>
     </div>
@@ -1283,7 +1238,7 @@ function split(node){[...node.childNodes].forEach(c=>{
 $$('[data-kinetic]').forEach(el=>{n=0;el.setAttribute('aria-label',el.textContent.trim().replace(/\s+/g,' '));split(el);$$('.w',el).forEach(w=>w.setAttribute('aria-hidden','true'))});
 
 /* staggered children */
-$$('[data-stagger]').forEach(p=>{if(p.classList.contains('mt-grid')&&matchMedia('(max-width:900px)').matches)return;[...p.children].forEach((c,i)=>{c.setAttribute('data-reveal','');c.style.setProperty('--d',(i*.09)+'s')})});
+$$('[data-stagger]').forEach(p=>[...p.children].forEach((c,i)=>{c.setAttribute('data-reveal','');c.style.setProperty('--d',(i*.09)+'s')}));
 
 /* 05 iris + reveal observer */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
@@ -1337,7 +1292,7 @@ function onScroll(){
     const dist=mobile?r.height:vh*.42;const tp=Math.min(1,Math.max(0,(vh*.72-r.top)/dist));
     tlEl.style.setProperty('--tp',tp.toFixed(4));steps.forEach((s,i)=>s.classList.toggle('on',tp>.01&&tp>=i/3-.001))}
 }
-/* scroll work is batched in onFrame() below */
+let tick=false;addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(()=>{onScroll();tick=false})}},{passive:true});addEventListener('resize',onScroll);onScroll();
 
 /* concept showcase tabs (05 iris transitions + 01 phone ui + 02 lower third) */
 const tabs=$$('.tab'),sites=$$('.site'),frame=$('#frame'),lt2=$('#lt2');let cur=0;
@@ -1388,26 +1343,7 @@ function onScroll2(){
   if(lite)return;let active=-1;spyTargets.forEach((t,i)=>{if(!t)return;const r=t.getBoundingClientRect();if(r.top<vh*.4&&r.bottom>vh*.4)active=i});
   spyLinks.forEach((a,i)=>a.classList.toggle('active',i===active));
 }
-const navBar=$('.nav-progress');let lastTp=-1,lastDock=null,lastStep=-1,docH=document.documentElement.scrollHeight,lastActive=-2;
-function onFrame(){
-  hsTick=false;
-  const y=scrollY,vh=innerHeight;
-  /* ---- reads ---- */
-  const tr=tlEl?tlEl.getBoundingClientRect():null;
-  const cr=contactEl?contactEl.getBoundingClientRect():null;
-  const sr=lite?null:spyTargets.map(t=>t?t.getBoundingClientRect():null);
-  /* ---- writes ---- */
-  if(navBar)navBar.style.transform='scaleX('+Math.min(1,y/Math.max(1,docH-vh)).toFixed(4)+')';
-  if(tr&&tr.bottom>-200&&tr.top<vh+200){const mobile=innerWidth<=900,dist=mobile?tr.height:vh*.42,tp=Math.min(1,Math.max(0,(vh*.72-tr.top)/dist)),q=Math.round(tp*500)/500;
-    if(q!==lastTp){lastTp=q;tlEl.style.setProperty('--tp',q);const st=tp>.01?Math.min(3,Math.floor(tp*3+.002)):-1;if(st!==lastStep){lastStep=st;steps.forEach((s,i)=>s.classList.toggle('on',i<=st))}}}
-  if(hero&&!rm&&!lite&&y<vh*1.3)hero.style.setProperty('--hs',Math.min(1,Math.max(0,y/(vh*.95))).toFixed(3));
-  if(dock){const inContact=cr&&cr.top<vh*.7&&cr.bottom>0,show=y>vh*.7&&!inContact;if(show!==lastDock){lastDock=show;dock.classList.toggle('show',show)}}
-  if(sr){let active=-1;sr.forEach((r,i)=>{if(r&&r.top<vh*.4&&r.bottom>vh*.4)active=i});if(active!==lastActive){lastActive=active;spyLinks.forEach((a,i)=>a.classList.toggle('active',i===active))}}
-}
-addEventListener('scroll',()=>{if(!hsTick){hsTick=true;requestAnimationFrame(onFrame)}},{passive:true});
-addEventListener('resize',()=>{docH=document.documentElement.scrollHeight;requestAnimationFrame(onFrame)});
-if('ResizeObserver'in window)new ResizeObserver(()=>{docH=document.documentElement.scrollHeight}).observe(document.body);
-onFrame();
+addEventListener('scroll',()=>{if(!hsTick){hsTick=true;requestAnimationFrame(()=>{onScroll2();hsTick=false})}},{passive:true});addEventListener('resize',onScroll2);onScroll2();
 
 /* count-up numbers */
 $$('[data-count]').forEach(el=>{
@@ -1437,9 +1373,7 @@ if(fine&&!rm){
 const mtIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('live',e.isIntersecting)),{threshold:.2});
 $$('.mt').forEach(t=>mtIO.observe(t));
 const cn=$('#cnt18');
-if(cn&&!rm){const tile=cn.closest('.mt');let run=false;const t0=performance.now();
-  function cframe(t){if(!run)return;const p=((t-t0)%4400)/4400,q=Math.min(1,p/.55),e=1-Math.pow(1-q,3);cn.textContent=Math.round(18*e)+'+';requestAnimationFrame(cframe)}
-  new IntersectionObserver(es=>{const v=es[0].isIntersecting;if(v&&!run){run=true;requestAnimationFrame(cframe)}else if(!v)run=false},{threshold:.2}).observe(tile)}
+if(cn&&!rm){const tile=cn.closest('.mt');(function frame(t){if(tile.classList.contains('live')){const p=(t%4400)/4400,q=Math.min(1,p/.55),e=1-Math.pow(1-q,3);cn.textContent=Math.round(18*e)+'+'}requestAnimationFrame(frame)})(0)}
 const cv=$('#pc');
 if(cv){
   const ctx=cv.getContext('2d');let W=0,H=0,P=[],raf=0,vis=false;const mouse={x:-999,y:-999};
@@ -1460,13 +1394,13 @@ if(cv){
 /* ===== V5: liquid interactions ===== */
 /* ripple on press */
 document.addEventListener('pointerdown',e=>{
-  const t=e.target.closest&&e.target.closest('.btn,.lift,.mt,.tab,.faq-item');if(!t||rm||e.pointerType==='touch')return;
+  const t=e.target.closest&&e.target.closest('.btn,.lift,.mt,.tab,.faq-item');if(!t||rm)return;
   const r=t.getBoundingClientRect(),s=Math.max(r.width,r.height)*2.2,d=document.createElement('span');d.className='ripple';
   d.style.cssText='left:'+(e.clientX-r.left)+'px;top:'+(e.clientY-r.top)+'px;width:'+s+'px;height:'+s+'px';t.appendChild(d);d.addEventListener('animationend',()=>d.remove())});
 /* ghost buttons: flood originates at the pointer */
 $$('.btn-ghost').forEach(b=>{const set=e=>{const r=b.getBoundingClientRect();b.style.setProperty('--bx',(e.clientX-r.left)+'px');b.style.setProperty('--by',(e.clientY-r.top)+'px')};b.addEventListener('pointerenter',set);b.addEventListener('pointermove',set)});
 /* hero click splash */
-if(hero&&!rm){const goo=$('.goo');hero.addEventListener('pointerdown',e=>{if(e.pointerType==='touch'||e.target.closest('a,button,input,select,textarea,.glass'))return;const r=hero.getBoundingClientRect(),b=document.createElement('i');b.className='blob splash';b.style.left=(e.clientX-r.left)+'px';b.style.top=(e.clientY-r.top)+'px';goo.appendChild(b);setTimeout(()=>b.remove(),1700)})}
+if(hero&&!rm){const goo=$('.goo');hero.addEventListener('pointerdown',e=>{if(e.target.closest('a,button,input,select,textarea,.glass'))return;const r=hero.getBoundingClientRect(),b=document.createElement('i');b.className='blob splash';b.style.left=(e.clientX-r.left)+'px';b.style.top=(e.clientY-r.top)+'px';goo.appendChild(b);setTimeout(()=>b.remove(),1700)})}
 /* concept stage tilts toward the pointer */
 const sw=$('.stagewrap');
 if(sw&&fine&&!rm){sw.addEventListener('pointermove',e=>{const r=sw.getBoundingClientRect();sw.style.setProperty('--sry',(((e.clientX-r.left)/r.width-.5)*6).toFixed(2)+'deg');sw.style.setProperty('--srx',((.5-(e.clientY-r.top)/r.height)*4).toFixed(2)+'deg')});sw.addEventListener('pointerleave',()=>{sw.style.setProperty('--sry','0deg');sw.style.setProperty('--srx','0deg')})}
@@ -1480,7 +1414,7 @@ if(!rm&&!lite){const rows=$$('.mq-row');let lastY=scrollY,vel=0,rate=1;(function
 /* ===== V7: performance ===== */
 /* pause every looping animation in sections that are off-screen */
 const offIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('off',!e.isIntersecting)),{rootMargin:'160px 0px'});
-$$('.hero,.marquee').forEach(s=>offIO.observe(s));
+$$('.hero,.section,.marquee').forEach(s=>offIO.observe(s));
 /* free the intro layer once it has played */
 setTimeout(()=>{const i=$('.intro');if(i)i.remove()},rm?0:2700);
 })();
