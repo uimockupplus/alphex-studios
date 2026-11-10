@@ -92,7 +92,13 @@
   #ax-send:disabled{opacity:.5;cursor:wait}
   .ax-note{text-align:center;margin-top:9px;color:#858a82;font-size:9px;letter-spacing:.025em}
   @media(max-width:900px){#alphex-assistant{right:16px;bottom:88px}#alphex-assistant.ax-dock-visible{bottom:92px}}
-  @media(max-width:540px){#alphex-assistant{right:14px;bottom:86px}#ax-launch{width:66px;height:66px;border-radius:23px}#ax-panel{position:fixed;right:9px;bottom:78px;width:calc(100vw - 18px);height:min(72dvh,650px);min-height:430px;border-radius:23px}#ax-feed{padding:17px 15px}.ax-intro h3{font-size:24px}}
+  @media(max-width:540px){
+    #alphex-assistant{right:14px;bottom:86px}
+    #ax-launch{width:66px;height:66px;border-radius:23px}
+    #ax-panel{position:fixed;right:9px;bottom:78px;width:calc(100vw - 18px);height:min(72dvh,650px);min-height:430px;border-radius:23px}
+    #alphex-assistant.ax-chat-open #ax-launch{opacity:0;visibility:hidden;pointer-events:none;transform:scale(.65)}
+    #ax-feed{padding:17px 15px}.ax-intro h3{font-size:24px}
+  }
   @media(max-width:360px){.ax-quick{grid-template-columns:1fr}.ax-quick button{min-height:45px}}
   @media(prefers-reduced-motion:reduce){#ax-panel.ax-open{animation:none}#ax-launch,.ax-bot-face,.ax-bot-pupil,.ax-bot-lid,.ax-antenna{animation:none!important;transition:none}}
   `;
@@ -161,11 +167,13 @@
   let busy = false;
 
   function openChat() {
+    root.classList.add("ax-chat-open");
     panel.classList.add("ax-open");
     launch.setAttribute("aria-expanded", "true");
     input.focus();
   }
   function closeChat() {
+    root.classList.remove("ax-chat-open");
     panel.classList.remove("ax-open");
     launch.setAttribute("aria-expanded", "false");
     launch.focus();
