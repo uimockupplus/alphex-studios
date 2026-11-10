@@ -966,6 +966,80 @@ html,body{overflow-x:hidden}
 @keyframes flCur{0%{transform:translate(46px,46px);opacity:0}2%{opacity:1}4%{transform:translate(2px,2px) scale(1)}5%{transform:translate(2px,2px) scale(.82)}8%{transform:translate(2px,2px) scale(1)}16%{opacity:1}22%,100%{transform:translate(2px,2px);opacity:0}}
 .fl-chip{position:absolute;top:-14px;right:2px;font-style:normal;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--y);color:#111;opacity:0;animation:flChip 6s var(--ease) infinite}
 @keyframes flChip{0%,70%{opacity:0;transform:translateY(8px) scale(.8)}74%{opacity:1;transform:none}92%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateY(-8px)}}
+/* ---------- hero flow v2: click → enquiry → client ---------- */
+@property --on{syntax:"<number>";inherits:true;initial-value:0}
+.fx{width:min(100%,700px);margin:clamp(40px,6vw,72px) auto 0;padding:22px 24px 22px;border-radius:28px;text-align:left}
+.fx-steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding-bottom:18px}
+.fx-track{position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.fx-prog{position:absolute;inset:0;background:var(--y);transform-origin:left;animation:fxProg 9s linear infinite}
+@keyframes fxProg{0%{transform:scaleX(0);opacity:1}94%{transform:scaleX(1);opacity:1}98%,100%{transform:scaleX(1);opacity:0}}
+.fx-step{display:flex;align-items:center;gap:12px;opacity:calc(.45 + var(--on)*.55)}
+.fx-step.s1{animation:fxOn1 9s var(--ease) infinite}.fx-step.s2{animation:fxOn2 9s var(--ease) infinite}.fx-step.s3{animation:fxOn3 9s var(--ease) infinite}
+@keyframes fxOn1{0%{--on:0}3%,93%{--on:1}97%,100%{--on:0}}
+@keyframes fxOn2{0%,32%{--on:0}36%,93%{--on:1}97%,100%{--on:0}}
+@keyframes fxOn3{0%,65%{--on:0}69%,93%{--on:1}97%,100%{--on:0}}
+.fx-step i{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 .82rem var(--head);font-style:normal;transform:scale(calc(1 + var(--on)*.08));
+  color:color-mix(in srgb,#111 calc(var(--on)*100%),#cfcfc6);
+  background:color-mix(in srgb,var(--y) calc(var(--on)*100%),rgba(255,255,255,.05));
+  border:1px solid color-mix(in srgb,var(--y) calc(var(--on)*100%),rgba(255,255,255,.22))}
+.fx-step b{display:block;font-family:var(--head);font-size:.92rem;letter-spacing:-.02em;font-weight:600;line-height:1.2}
+.fx-step small{display:block;color:var(--subtle);font-size:.72rem;margin-top:2px}
+.fx-stage{position:relative;height:156px;margin-top:20px}
+.fx-sc{position:absolute;inset:0;display:grid;place-items:center;opacity:0}
+.fx-sc.sc3{opacity:1}
+.sc1{animation:fxS1 9s var(--ease) infinite}.sc2{animation:fxS2 9s var(--ease) infinite}.sc3{animation:fxS3 9s var(--ease) infinite}
+@keyframes fxS1{0%{opacity:0}3%,30%{opacity:1}34%,100%{opacity:0}}
+@keyframes fxS2{0%,30%{opacity:0}34%,60%{opacity:1}64%,100%{opacity:0}}
+@keyframes fxS3{0%,63%{opacity:0}67%,93%{opacity:1}97%,100%{opacity:0}}
+/* scene 1: the click */
+.fx-site{position:relative;width:min(100%,430px);display:grid;gap:16px;justify-items:start;padding:20px 22px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+.fx-sk{display:grid;gap:9px;width:100%}.fx-sk i{display:block;height:9px;border-radius:5px;background:rgba(255,255,255,.16);width:72%}.fx-sk i:first-child{width:46%;height:11px;background:rgba(244,231,71,.75)}
+.fx-live{position:absolute;right:14px;top:12px;display:flex;align-items:center;gap:7px;font-size:.66rem;font-weight:600;color:#d5d5cb;letter-spacing:.02em}
+.fx-live i{width:7px;height:7px;border-radius:50%;background:var(--y);animation:pillPulse 2s infinite}
+.fx-ctaw{position:relative;display:inline-block}
+.fx-cta{position:relative;overflow:hidden;padding:11px 20px;border-radius:99px;background:var(--y);color:#111;font-weight:700;font-size:.82rem;letter-spacing:-.01em;animation:fxPress 9s var(--ease) infinite}
+@keyframes fxPress{0%,17%{transform:scale(1)}19.5%{transform:scale(.94)}24%,100%{transform:scale(1)}}
+.fx-rip{position:absolute;left:62%;top:60%;width:240px;aspect-ratio:1;border-radius:50%;background:rgba(0,0,0,.16);transform:translate(-50%,-50%) scale(0);animation:fxRip 9s var(--ease) infinite}
+@keyframes fxRip{0%,18.5%{transform:translate(-50%,-50%) scale(0);opacity:.6}30%,100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+.fx-cur{position:absolute;left:62%;top:56%;width:22px;height:22px;opacity:0;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4));animation:fxCur 9s var(--ease) infinite}
+@keyframes fxCur{0%,6%{transform:translate(80px,52px);opacity:0}9%{opacity:1}17%{transform:translate(0,0);opacity:1}19%{transform:translate(0,0) scale(.78)}22%{transform:translate(0,0) scale(1)}29%{transform:translate(0,0);opacity:1}33%,100%{transform:translate(0,0);opacity:0}}
+/* shared cards */
+.fx-card{position:relative;isolation:isolate;width:min(100%,430px);display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:rgba(22,23,17,.9);box-shadow:0 18px 40px -16px rgba(0,0,0,.7)}
+.fx-card::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);transform:translateY(9px) scale(.94)}
+.fx-card b{display:block;font-family:var(--head);font-size:.95rem;letter-spacing:-.02em;font-weight:600}
+.fx-card small{display:block;color:var(--muted);font-size:.74rem;margin-top:2px}
+/* scene 2: the enquiry */
+.fx-note{align-items:flex-start;animation:fxNote 9s var(--ease) infinite}
+@keyframes fxNote{0%,32%{transform:translateY(26px) scale(.95)}38%,61%{transform:none}65%,100%{transform:none}}
+.fx-ava{flex:none;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:var(--y);color:#111}
+.fx-ava svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fx-note b em{font-weight:500;font-size:.68rem;color:var(--subtle);margin-left:8px}
+.fx-note p{margin:3px 0 10px;font-size:.84rem;color:#e4e4da;line-height:1.45}
+.fx-tags{display:flex;flex-wrap:wrap;gap:6px}
+.fx-tags u{text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:.66rem;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid rgba(255,255,255,.18);color:#d9d9cf}
+.fx-tags u:first-child::before{content:"";width:6px;height:6px;border-radius:50%;background:#25d366}
+.fx-tags u:last-child{border-color:rgba(244,231,71,.45);color:var(--y)}
+/* scene 3: the client */
+.fx-win{animation:fxWin 9s var(--ease) infinite}
+@keyframes fxWin{0%,65%{transform:translateY(26px) scale(.95)}71%,100%{transform:none}}
+.fx-ok{position:relative;flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--y);color:#111;animation:fxPop 9s var(--ease) infinite}
+@keyframes fxPop{0%,69%{transform:scale(0)}74%{transform:scale(1.14)}78%,100%{transform:scale(1)}}
+.fx-ok svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.fx-ok path{stroke-dasharray:1;stroke-dashoffset:0;animation:fxDraw 9s var(--ease) infinite}
+@keyframes fxDraw{0%,73%{stroke-dashoffset:1}81%,100%{stroke-dashoffset:0}}
+.fx-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--y);opacity:0;animation:fxRing 9s var(--ease) infinite}
+@keyframes fxRing{0%,72%{transform:scale(1);opacity:0}73%{opacity:.7}88%,100%{transform:scale(2.3);opacity:0}}
+.fx-amt{margin-left:auto;font-family:var(--head);font-weight:700;font-size:1.5rem;letter-spacing:-.05em;color:var(--y);animation:fxAmt 9s var(--ease) infinite}
+@keyframes fxAmt{0%,75%{opacity:0;transform:translateY(8px)}82%,100%{opacity:1;transform:none}}
+@media(max-width:560px){
+  .fx{padding:18px 14px}.fx-step{gap:8px}.fx-step small{display:none}.fx-step i{width:30px;height:30px}
+  .fx-stage{height:164px}.fx-amt{font-size:1.2rem}.fx-card{padding:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .fx *{animation:none!important}
+  .fx-step{--on:1}.fx-sc{opacity:0}.fx-sc.sc3{opacity:1}.fx-prog{transform:scaleX(1)}
+}
+
 /* ---------- cycling hero headline: kinetic type + mask reveal ---------- */
 .hero h1.cyc{display:grid;max-width:none;font-size:clamp(2.2rem,.8rem + 5.6vw,5.4rem);line-height:1;margin-bottom:24px}
 .cyc-l{grid-area:1/1;display:block;visibility:hidden}
@@ -1037,12 +1111,38 @@ html:not(.js) .cyc-l:first-child .cwi{transform:none;opacity:1}
       <div class="hero-actions" data-reveal style="--d:.1s"><a class="btn" href="#contact">Get a Free Website Quote</a><a class="btn btn-ghost" href="#work">See What We Build</a></div>
     </div>
 
-    <div class="flow glass" data-reveal style="--d:.2s" aria-hidden="true">
-      <div class="fl-node n1"><span class="fl-ic"><svg viewBox="0 0 24 24"><path d="M5 3l14 7-6 2-2 6z"/></svg></span><i class="fl-rip"></i><svg class="fl-cur" viewBox="0 0 24 24"><path d="M5 3l14 7-6 2-2 6z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg><b>Click</b><small>Visitor lands</small></div>
-      <div class="fl-line l1"><i class="fl-dot"></i></div>
-      <div class="fl-node n2"><span class="fl-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 8l9 6 9-6"/></svg></span><b>Enquiry</b><small>Form or WhatsApp</small></div>
-      <div class="fl-line l2"><i class="fl-dot"></i></div>
-      <div class="fl-node n3"><span class="fl-ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.500"/></svg></span><b>Client</b><small>Project won</small><em class="fl-chip">+1 client</em></div>
+    <div class="fx glass" data-reveal style="--d:.2s" aria-hidden="true">
+      <div class="fx-steps">
+        <div class="fx-step s1"><i>1</i><span><b>Click</b><small>Visitor lands</small></span></div>
+        <div class="fx-step s2"><i>2</i><span><b>Enquiry</b><small>Form or WhatsApp</small></span></div>
+        <div class="fx-step s3"><i>3</i><span><b>Client</b><small>Project won</small></span></div>
+        <span class="fx-track"><span class="fx-prog"></span></span>
+      </div>
+      <div class="fx-stage">
+        <div class="fx-sc sc1">
+          <div class="fx-site">
+            <span class="fx-live"><i></i>Visitor on page</span>
+            <div class="fx-sk"><i></i><i></i></div>
+            <div class="fx-ctaw">
+              <div class="fx-cta">Get a Free Website Quote<span class="fx-rip"></span></div>
+              <svg class="fx-cur" viewBox="0 0 24 24"><path d="M5 3l14 7-6 2-2 6z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="fx-sc sc2">
+          <div class="fx-card fx-note">
+            <span class="fx-ava"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 8l9 6 9-6"/></svg></span>
+            <div><b>New enquiry<em>just now</em></b><p>“Need a 6-page website for my clinic.”</p><span class="fx-tags"><u>WhatsApp</u><u>Business Website</u></span></div>
+          </div>
+        </div>
+        <div class="fx-sc sc3">
+          <div class="fx-card fx-win">
+            <span class="fx-ok"><i class="fx-ring"></i><svg viewBox="0 0 24 24"><path pathLength="1" d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+            <div><b>Project won</b><small>Business Website · signed</small></div>
+            <span class="fx-amt">+₹14,999</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
