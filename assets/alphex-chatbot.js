@@ -95,9 +95,70 @@
   @media(max-width:540px){
     #alphex-assistant{right:14px;bottom:86px}
     #ax-launch{width:66px;height:66px;border-radius:23px}
-    #ax-panel{position:fixed;right:9px;bottom:78px;width:calc(100vw - 18px);height:min(72dvh,650px);min-height:430px;border-radius:23px}
-    #alphex-assistant.ax-chat-open #ax-launch{opacity:0;visibility:hidden;pointer-events:none;transform:scale(.65)}
-    #ax-feed{padding:17px 15px}.ax-intro h3{font-size:24px}
+
+    /* Mobile chat uses an opaque graphite base so the page never bleeds
+       through the conversation. Glass reflections remain as surface detail. */
+    #ax-panel{
+      position:fixed;
+      right:9px;
+      bottom:78px;
+      width:calc(100vw - 18px);
+      height:min(72dvh,650px);
+      min-height:430px;
+      border-radius:23px;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.065),transparent 30%,rgba(244,231,71,.018)),
+        #101419;
+      border:1px solid rgba(255,255,255,.2);
+      -webkit-backdrop-filter:blur(28px) saturate(140%);
+      backdrop-filter:blur(28px) saturate(140%);
+      box-shadow:0 28px 90px rgba(0,0,0,.84),inset 0 1px rgba(255,255,255,.13);
+      isolation:isolate;
+    }
+        #ax-panel::before{
+      background:linear-gradient(135deg,rgba(255,255,255,.045),transparent 34%,rgba(244,231,71,.025));
+      opacity:1;
+    }
+    #ax-panel::after{border-color:rgba(255,255,255,.07)}
+    .ax-head{
+      background:#0d1115;
+      border-bottom:1px solid rgba(255,255,255,.13);
+      box-shadow:inset 0 1px rgba(255,255,255,.08);
+    }
+    #ax-feed{
+      padding:17px 15px;
+      background:#101419;
+      isolation:isolate;
+    }
+    .ax-bubble.bot{
+      background:#20262c;
+      border-color:rgba(255,255,255,.14);
+      backdrop-filter:none;
+    }
+    .ax-bubble.user{
+      background:#45421c;
+      border-color:rgba(244,231,71,.36);
+      backdrop-filter:none;
+    }
+    .ax-quick button{
+      background:#1c2228;
+      border-color:rgba(255,255,255,.15);
+      backdrop-filter:none;
+    }
+    .ax-foot{
+      background:#0b0f13;
+      border-top:1px solid rgba(255,255,255,.14);
+      backdrop-filter:none;
+    }
+    #ax-form{background:#1a2026}
+    #ax-input{background:transparent}
+    #alphex-assistant.ax-chat-open #ax-launch{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:scale(.65);
+    }
+    .ax-intro h3{font-size:24px}
   }
   @media(max-width:360px){.ax-quick{grid-template-columns:1fr}.ax-quick button{min-height:45px}}
   @media(prefers-reduced-motion:reduce){#ax-panel.ax-open{animation:none}#ax-launch,.ax-bot-face,.ax-bot-pupil,.ax-bot-lid,.ax-antenna{animation:none!important;transition:none}}
@@ -172,7 +233,7 @@
     launch.setAttribute("aria-expanded", "true");
     input.focus();
   }
-  function closeChat() {
+    function closeChat() {
     root.classList.remove("ax-chat-open");
     panel.classList.remove("ax-open");
     launch.setAttribute("aria-expanded", "false");
