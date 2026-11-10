@@ -1,50 +1,66 @@
-# Alphex Studios
+# Alphex Studio — Vercel Hybrid Chatbot
 
-Full Next.js App Router project for the Alphex Studios website.
+This is a Vercel-native integration for the existing static HTML Alphex Studio website.
 
-## Requirements
+## Included
+- `assets/alphex-chatbot.js`: floating liquid-glass chat widget.
+- `api/chat.js`: Vercel serverless function that calls Groq securely.
+- `lib/knowledge.js`: website-grounded Alphex Studio knowledge.
+- `index-integration-snippet.html`: the one script tag to add before `</body>`.
 
-- Node.js 20.9 or newer
-- npm
+## 1. Add files to your existing GitHub repository
 
-## Run locally
+Copy these folders into the root of `uimockupplus/alphex-studios`:
 
-```bash
-npm install
-npm run dev
+```text
+api/chat.js
+assets/alphex-chatbot.js
+lib/knowledge.js
 ```
 
-Open http://localhost:3000.
+Do not replace your existing `index.html`, CSS, animation code, `vercel.json`, or other site files.
 
-## Production build
+## 2. Add one script tag to index.html
 
-```bash
-npm run build
-npm run start
+Add this immediately before the closing `</body>` tag:
+
+```html
+<script src="/assets/alphex-chatbot.js" defer></script>
 ```
 
-## Deploy to Vercel
+## 3. Configure Vercel
 
-1. Push the entire `alphex-studios` folder to the connected GitHub repository.
-2. In Vercel, set **Root Directory** to the folder containing this `package.json` (usually `./`).
-3. Set Framework Preset to **Next.js**.
-4. Leave Build Command and Output Directory at their defaults.
-5. Deploy.
+In Vercel → Project → Settings → Environment Variables, add:
 
-Do not upload only `src/app`. The repository root must contain `package.json`, `next.config.ts`, `tsconfig.json`, `postcss.config.mjs`, and the `src` directory.
+- `GROQ_API_KEY` = your private Groq API key
+- `GROQ_MODEL` = a model currently enabled for your Groq account, e.g. `llama-3.3-70b-versatile`
+- `ALLOWED_ORIGINS` = `https://studio.alphexai.com`
 
-## Environment variables
+If you also use a Vercel preview domain, add its exact origin to `ALLOWED_ORIGINS`, comma-separated. You can omit `ALLOWED_ORIGINS` for same-origin-only validation based on the request host.
 
-Copy `.env.example` to `.env.local` for local development and configure the matching variables in Vercel Project Settings → Environment Variables. Keep private credentials out of GitHub.
+Never put the Groq key in HTML, JavaScript, or GitHub.
 
-## Before launch
+## 4. Deploy
 
-- Replace contact, WhatsApp, social, and project placeholders with verified details.
-- Configure the quote form delivery endpoint and test it end-to-end.
-- Add real portfolio images and project details; do not present concept work as client work.
-- Add privacy and terms pages before collecting personal information.
-- Verify metadata, domain settings, and mobile layouts.
+Commit and push the files to the connected GitHub repository. Vercel should deploy the new `/api/chat` function and static widget automatically.
 
-## Notes
+After deployment:
+- Open `https://studio.alphexai.com/api/chat` in a browser. A 405 response is expected because the endpoint accepts POST only.
+- Test the chatbot on the website.
+- Check Vercel → Deployments → Functions / Logs if requests fail.
 
-The package lock is a minimal npm lockfile seed. Run `npm install` once from the project root to resolve and write the complete dependency tree for your environment; commit the resulting updated `package-lock.json`.
+## 5. How the hybrid behavior works
+
+- Predefined quick prompts: services, pricing, and starting a project.
+- AI free-text chat: Groq answers from the website knowledge file.
+- Lead handoff: quote form (`#contact`) and WhatsApp.
+- No Supabase, Neon, SQLite, or database required for this first version. The chatbot does not persist conversations or visitor details.
+
+## Security and operational notes
+
+- The API key is read only by the serverless function.
+- The API validates same-origin requests or exact origins listed in `ALLOWED_ORIGINS`.
+- Message length and conversation history are capped.
+- This MVP does not include a durable rate limiter. Before a public marketing push, add rate limiting / bot protection (for example Vercel Firewall or an edge rate-limit service).
+- The model name is configurable because Groq's available model list can change. Set `GROQ_MODEL` to a model available in your Groq project.
+- The knowledge base is manually maintained. Update `lib/knowledge.js` when public website facts change.
