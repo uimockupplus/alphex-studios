@@ -966,20 +966,60 @@ html,body{overflow-x:hidden}
 @keyframes flCur{0%{transform:translate(46px,46px);opacity:0}2%{opacity:1}4%{transform:translate(2px,2px) scale(1)}5%{transform:translate(2px,2px) scale(.82)}8%{transform:translate(2px,2px) scale(1)}16%{opacity:1}22%,100%{transform:translate(2px,2px);opacity:0}}
 .fl-chip{position:absolute;top:-14px;right:2px;font-style:normal;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--y);color:#111;opacity:0;animation:flChip 6s var(--ease) infinite}
 @keyframes flChip{0%,70%{opacity:0;transform:translateY(8px) scale(.8)}74%{opacity:1;transform:none}92%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateY(-8px)}}
-/* ---------- hero flow v3: live conversion funnel ---------- */
-@property --on{syntax:"<number>";inherits:true;initial-value:1}
-.fx{width:min(100%,720px);margin:clamp(40px,6vw,72px) auto 0;padding:18px 20px 22px;border-radius:28px;text-align:center}
-.fx-svg{display:block;width:100%;height:auto;overflow:visible}
-.fx-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
-.fx-step{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:calc(.42 + var(--on)*.58)}
-.fx-step i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 .78rem var(--head);font-style:normal;margin-bottom:5px;
-  transform:scale(calc(1 + var(--on)*.08));
-  color:color-mix(in srgb,#111 calc(var(--on)*100%),#d8d8ce);
-  background:color-mix(in srgb,var(--y) calc(var(--on)*100%),rgba(255,255,255,.05));
-  border:1px solid color-mix(in srgb,var(--y) calc(var(--on)*100%),rgba(255,255,255,.22))}
-.fx-step b{font-family:var(--head);font-size:.95rem;letter-spacing:-.02em;font-weight:600;line-height:1.2}
-.fx-step small{color:var(--subtle);font-size:.74rem}
-@media(max-width:560px){.fx{padding:14px 10px 18px}.fx-step small{display:none}.fx-step i{width:26px;height:26px}}
+/* ---------- hero prompt box ---------- */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hq{width:min(100%,860px);margin:clamp(40px,6vw,72px) auto 0;display:flex;flex-direction:column;align-items:center;gap:26px}
+.hq svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hq-box{width:100%;padding:22px 22px 18px;border-radius:34px;background:#0e0f0d;border:1px solid rgba(255,255,255,.13);text-align:left;transition:border-color .3s,box-shadow .3s}
+.hq-box:focus-within{border-color:rgba(244,231,71,.45);box-shadow:0 0 0 4px rgba(244,231,71,.07),0 30px 70px -20px rgba(0,0,0,.7)}
+.hq-box textarea{display:block;width:100%;resize:none;border:0;outline:0;background:none;color:var(--text);font:400 1.12rem/1.45 var(--head);padding:4px 6px 0;min-height:64px}
+.hq-box textarea::placeholder{color:#5b5b56}
+.hq-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px}
+.hq-chips{display:flex;flex-wrap:wrap;gap:10px;min-width:0}
+.hq-chip{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:none;color:#dcdcd2;font:500 .98rem var(--head);cursor:pointer;white-space:nowrap;transition:background .25s,border-color .25s,color .25s}
+.hq-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.4);color:#fff}
+.hq-chip.hq-open{background:#1f201d;border-color:transparent;color:#f1f1ea}
+.hq-tools{display:flex;gap:10px;flex:none}
+.hq-ic{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.2);background:none;color:#e8e8de;transition:background .25s,transform .25s,opacity .25s}
+.hq-ic:hover{background:rgba(255,255,255,.08)}
+.hq-ic.rec{background:var(--y);color:#111;border-color:var(--y);animation:hqPulse 1.2s infinite}
+@keyframes hqPulse{50%{box-shadow:0 0 0 8px rgba(244,231,71,.18)}}
+.hq-send{background:#222320;border-color:transparent;color:#6e6e66}
+.hq-send svg{width:22px;height:22px}
+.hq-send:not(:disabled){background:var(--y);color:#111;cursor:pointer}
+.hq-send:disabled{cursor:default}
+.hq-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.hq-main,.hq-sec{display:inline-flex;align-items:center;gap:12px;height:56px;padding:0 28px;border-radius:999px;font:500 1.08rem var(--head);transition:transform .3s var(--ease),background .25s,border-color .25s,box-shadow .3s}
+.hq-main{background:var(--y);color:#111;font-weight:600;box-shadow:0 14px 34px -12px rgba(244,231,71,.5)}
+.hq-main:hover{transform:translateY(-2px);box-shadow:0 18px 40px -10px rgba(244,231,71,.6)}
+.hq-sec{border:1px solid rgba(255,255,255,.2);color:#e8e8de}
+.hq-sec:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.4);transform:translateY(-2px)}
+@media(max-width:760px){.hq-row{flex-direction:column;align-items:stretch}.hq-tools{justify-content:flex-end}.hq-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-6px;padding-inline:6px}.hq-chips::-webkit-scrollbar{display:none}.hq-chip{height:42px;padding:0 16px;font-size:.9rem}.hq-ic{width:48px;height:48px}.hq-main,.hq-sec{height:50px;padding:0 22px;font-size:1rem}}
+.hq-thread{margin:-4px -4px 14px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:12px}
+.hq-thread[hidden]{display:none}
+.hq-head{display:flex;justify-content:space-between;align-items:center;padding:0 8px 10px;font:600 .8rem var(--head);color:var(--muted)}
+.hq-head span{display:inline-flex;align-items:center;gap:8px}
+.hq-head i{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.15)}
+.hq-head button{background:none;border:1px solid rgba(255,255,255,.16);color:var(--muted);border-radius:99px;padding:4px 12px;font:500 .76rem var(--head);cursor:pointer}
+.hq-head button:hover{color:#fff;border-color:rgba(255,255,255,.4)}
+.hq-msgs{max-height:min(340px,46vh);overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:2px 6px;scroll-behavior:smooth;scrollbar-width:thin}
+.hq-m{max-width:86%;padding:11px 16px;border-radius:20px;font:400 .96rem/1.5 var(--head);animation:hqIn .35s var(--ease)}
+@keyframes hqIn{from{opacity:0;transform:translateY(8px)}}
+.hq-m.bot{align-self:flex-start;background:#1a1b18;color:#e9e9e0;border-bottom-left-radius:6px}
+.hq-m.me{align-self:flex-end;background:var(--y);color:#111;border-bottom-right-radius:6px;font-weight:500}
+.hq-m b{color:#fff;font-weight:600}
+.hq-m.me b{color:#111}
+.hq-acts,.hq-qr{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.hq-acts a{display:inline-flex;align-items:center;height:36px;padding:0 16px;border-radius:99px;background:var(--y);color:#111;font:600 .85rem var(--head)}
+.hq-acts a.alt{background:none;color:#e8e8de;border:1px solid rgba(255,255,255,.25)}
+.hq-qr button{height:34px;padding:0 14px;border-radius:99px;border:1px solid rgba(255,255,255,.2);background:none;color:#cfcfc5;font:500 .82rem var(--head);cursor:pointer}
+.hq-qr button:hover{background:rgba(255,255,255,.08);color:#fff}
+.hq-dots{display:inline-flex;gap:5px;padding:4px 0}
+.hq-dots i{width:7px;height:7px;border-radius:50%;background:#8a8a80;animation:hqDot 1s infinite}
+.hq-dots i:nth-child(2){animation-delay:.15s}.hq-dots i:nth-child(3){animation-delay:.3s}
+@keyframes hqDot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-4px)}}
+.hq-box.chat textarea{min-height:44px}
+@media(prefers-reduced-motion:reduce){.hq-m,.hq-dots i{animation:none}.hq-msgs{scroll-behavior:auto}}
 
 /* ---------- cycling hero headline: kinetic type + mask reveal ---------- */
 .hero h1.cyc{display:grid;max-width:none;font-size:clamp(2.2rem,.8rem + 5.6vw,5.4rem);line-height:1;margin-bottom:24px}
@@ -1052,35 +1092,32 @@ html:not(.js) .cyc-l:first-child .cwi{transform:none;opacity:1}
       <div class="hero-actions" data-reveal style="--d:.1s"><a class="btn" href="#contact">Get a Free Website Quote</a><a class="btn btn-ghost" href="#work">See What We Build</a></div>
     </div>
 
-    <div class="fx glass" data-reveal style="--d:.2s" aria-hidden="true">
-      <svg class="fx-svg" viewBox="0 0 720 250" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="fxWall" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".1"/><stop offset=".4" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#f4e747" stop-opacity=".5"/></linearGradient>
-          <linearGradient id="fxPipe" x1="0" x2="1"><stop offset="0" stop-color="#f4e747" stop-opacity=".05"/><stop offset="1" stop-color="#f4e747" stop-opacity=".3"/></linearGradient>
-        </defs>
-        <path id="fxFill" fill="rgba(255,255,255,.035)"/>
-        <path id="fxW1" fill="none" stroke="url(#fxWall)" stroke-width="1.5" stroke-linecap="round"/>
-        <path id="fxW2" fill="none" stroke="url(#fxWall)" stroke-width="1.5" stroke-linecap="round"/>
-        <path id="fxPipeL" d="M330 125H600" stroke="url(#fxPipe)" stroke-width="2" stroke-dasharray="3 9" stroke-linecap="round" fill="none"/>
-        <g id="fxDots"></g>
-        <g id="fxEnq" transform="translate(360 125)">
-          <circle id="fxEnqRing" r="30" fill="none" stroke="#f4e747" stroke-width="1.5" opacity="0"/>
-          <circle r="28" fill="#14150f" stroke="rgba(255,255,255,.22)" stroke-width="1.2"/>
-          <circle id="fxEnqFill" r="28" fill="#f4e747" opacity="0"/>
-          <g id="fxEnqIc" fill="none" stroke="#f4e747" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="-10" y="-7" width="20" height="14" rx="2.5"/><path d="M-10 -4l10 7 10-7"/></g>
-        </g>
-        <g id="fxCli" transform="translate(600 125)">
-          <circle id="fxCliRing" r="36" fill="none" stroke="#f4e747" stroke-width="1.5" opacity="0"/>
-          <circle id="fxCliRing2" r="36" fill="none" stroke="#f4e747" stroke-width="1" opacity="0"/>
-          <circle id="fxCliBody" r="34" fill="#f4e747"/>
-          <path d="M-11 1l7 7 15-16" fill="none" stroke="#111" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-        <g id="fxChip" opacity="0"><rect x="-44" y="-13" width="88" height="26" rx="13" fill="#f6f6ef"/><text x="0" y="4.5" text-anchor="middle" font-size="12" font-weight="700" fill="#111" font-family="Sora,Inter,system-ui,sans-serif">+1 client</text></g>
-      </svg>
-      <div class="fx-steps">
-        <div class="fx-step s1"><i>1</i><b>Click</b><small>Visitor lands</small></div>
-        <div class="fx-step s2"><i>2</i><b>Enquiry</b><small>Form or WhatsApp</small></div>
-        <div class="fx-step s3"><i>3</i><b>Client</b><small>Project won</small></div>
+    <div class="hq" data-reveal style="--d:.2s">
+      <form class="hq-box" id="hqForm" autocomplete="off">
+        <div class="hq-thread" id="hqThread" role="log" aria-live="polite" aria-label="Chat with Alphex assistant" hidden>
+          <div class="hq-head"><span><i></i>Alphex assistant</span><button type="button" id="hqReset">New chat</button></div>
+          <div class="hq-msgs" id="hqMsgs"></div>
+        </div>
+        <label class="sr-only" for="hqInput">Ask Alphex Studio anything</label>
+        <textarea id="hqInput" rows="2" placeholder="Can you connect WhatsApp" maxlength="400"></textarea>
+        <div class="hq-row">
+          <div class="hq-chips">
+            <button type="button" class="hq-chip hq-open" id="hqOpen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Open chat</button>
+            <button type="button" class="hq-chip" data-q="I want to create my project">Create my project</button>
+            <button type="button" class="hq-chip" data-q="What are your prices?">Pricing</button>
+            <button type="button" class="hq-chip" data-q="I want to book a call">Book a call</button>
+            <button type="button" class="hq-chip" data-q="How can I contact Alphex?">Contact Alphex</button>
+          </div>
+          <div class="hq-tools">
+            <button type="button" class="hq-ic" id="hqMic" aria-label="Dictate a message"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+            <button type="submit" class="hq-ic hq-send" id="hqSend" aria-label="Send message" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+          </div>
+        </div>
+      </form>
+      <div class="hq-cta">
+        <a class="hq-main" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1zM12 15l-3-3a22 22 0 0 1 2-4 12.9 12.9 0 0 1 11-6c0 2.2-.6 7.5-6 11a22 22 0 0 1-4 2zM9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>Start a project</a>
+        <a class="hq-sec" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Our services</a>
+        <a class="hq-sec" href="#work"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>Case studies</a>
       </div>
     </div>
   </div>
@@ -1535,92 +1572,161 @@ if(!rm&&!lite){const rows=$$('.mq-row');let lastY=scrollY,vel=0,rate=1;(function
 /* pause every looping animation in sections that are off-screen */
 const offIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('off',!e.isIntersecting)),{rootMargin:'160px 0px'});
 $$('.hero,.section,.marquee').forEach(s=>offIO.observe(s));
-/* ===== hero flow v3: live conversion funnel ===== */
+/* ===== hero chatbot ===== */
 (()=>{
-  const svg=$('.fx-svg');if(!svg)return;
-  const NS='http://www.w3.org/2000/svg',el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
-  const root=$('.fx'),dots=$('#fxDots');
-  const CY=125,VX=140,DT=.14,DWELL=.45,XE=360,XC=600,POOL=46;
-  const sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
-  /* funnel walls follow the same curve the dots use */
-  const wall=sg=>{let d='';for(let x=40;x<=332;x+=6){d+=(x==40?'M':'L')+x+' '+(CY+sg*(96*(1-sm(40,332,x))+16)).toFixed(1)}return d};
-  $('#fxW1').setAttribute('d',wall(-1));{let d=wall(-1);for(let x=332;x>=40;x-=6)d+='L'+x+' '+(CY+(96*(1-sm(40,332,x))+16)).toFixed(1);$('#fxFill').setAttribute('d',d+'Z')}$('#fxW2').setAttribute('d',wall(1));
-  /* particles: 70% visitors who leave, 20% enquiries, 10% clients */
-  const kind=n=>{const m=n%14;return m==0?2:(m==4||m==9)?1:0};
-  const x0=n=>40+(n*37)%80, y0=n=>CY+Math.sin(n*2.399)*92;
-  const tAt=(n,x)=>n*DT+DWELL+(x-x0(n))/VX;
-  const P=[];for(let i=0;i<POOL;i++){
-    const g=el('g',{opacity:0}),rip=el('circle',{r:4,fill:'none',stroke:'#f4e747','stroke-width':1.4}),
-      cur=el('path',{d:'M0 0l17 8.2-6.6 2.5-2.6 7z',fill:'#fff',stroke:'#111','stroke-width':1,'stroke-linejoin':'round'}),
-      halo=el('circle',{r:0,fill:'#fff',opacity:.08}),dot=el('circle',{r:0,fill:'#fff'});
-    g.append(rip,halo,dot,cur);dots.append(g);P.push({g,rip,cur,dot,halo})}
-  const q=id=>document.getElementById(id);
-  const eR=q('fxEnqRing'),eF=q('fxEnqFill'),eI=q('fxEnqIc'),cR=q('fxCliRing'),cR2=q('fxCliRing2'),cB=q('fxCliBody'),chip=q('fxChip'),pipe=q('fxPipeL');
-  const st=$$('.fx-step',root);
-  const mix=(a,b,t)=>Math.round(a+(b-a)*t);
-  const pulse=d=>d<-.12?0:d<0?1+d/.12:d<1.4?Math.exp(-d/.32):0;
-  function draw(t){
-    let pE=0,pC=0,chipN=-1,chipD=9;
-    const nMin=Math.floor((t-5.6)/DT),nMax=Math.floor(t/DT);
-    for(const o of P)o.g.setAttribute('opacity',0);
-    for(let n=Math.max(0,nMin);n<=nMax;n++){
-      const k=kind(n),a=t-n*DT,sx=x0(n),sy=y0(n),o=P[n%POOL];
-      /* downstream pulses */
-      if(k>0)pE=Math.max(pE,pulse(t-tAt(n,XE)));
-      if(k==2){const d=t-tAt(n,XC);pC=Math.max(pC,pulse(d));if(d>=0&&d<1.4&&d<chipD){chipD=d;chipN=n}}
-      /* body */
-      if(a<0||a>4.9)continue;
-      const mv=a-DWELL;let x=sx,y=sy,r=0,op=1,col='#fff',showDot=true;
-      if(a>=.2)r=Math.min(1,(a-.2)/.25)*5;
-      if(mv>0){
-        x=Math.min(XC,sx+mv*VX);
-        y=CY+(sy-CY)*(1-sm(40,332,x));
-        if(k==0){op=1-sm(250,326,x);r=5*(1-.5*sm(250,326,x))}
-        else{
-          const t1=sm(250,340,x);col='rgb('+mix(255,244,t1)+','+mix(255,231,t1)+','+mix(255,71,t1)+')';r=5+2.2*t1;
-          if(k==1){const f=sm(450,545,x);op=1-f;y+=f*16;r*=1-.3*f}
-          else{const f=sm(560,XC-6,x);r*=1-f;op=1-.2*f}
-        }
-        if(x>=XC-1&&k==2)showDot=false;
-      }
-      o.g.setAttribute('opacity',op.toFixed(3));
-      o.dot.setAttribute('cx',x.toFixed(1));o.dot.setAttribute('cy',y.toFixed(1));o.dot.setAttribute('r',showDot?r.toFixed(2):0);o.halo.setAttribute('cx',x.toFixed(1));o.halo.setAttribute('cy',y.toFixed(1));o.halo.setAttribute('r',showDot?(r*2.6).toFixed(1):0);o.halo.setAttribute('fill',col);o.dot.setAttribute('fill',col);
-      /* the click itself: cursor + ripple */
-      const ra=a;
-      if(ra<.75){
-        const rr=ra>.12?(ra-.12)/.58:0;
-        o.rip.setAttribute('cx',sx);o.rip.setAttribute('cy',sy);o.rip.setAttribute('r',(5+rr*30).toFixed(1));o.rip.setAttribute('opacity',(ra>.12?(1-rr)*.9:0).toFixed(3));
-        const co=ra<.38?Math.min(1,ra/.1):Math.max(0,1-(ra-.38)/.18),off=(1-Math.min(1,ra/.2))*14;
-        o.cur.setAttribute('transform','translate('+(sx+off-1).toFixed(1)+' '+(sy+off-1).toFixed(1)+') scale('+(ra>.12&&ra<.22?.82:1)+')');o.cur.setAttribute('opacity',co.toFixed(3));
-      }else{o.rip.setAttribute('opacity',0);o.cur.setAttribute('opacity',0)}
-    }
-    /* enquiry node */
-    eR.setAttribute('r',(30+pE*0+(1-pE)*0));
-    eF.setAttribute('opacity',(pE*.95).toFixed(3));
-    eI.setAttribute('stroke',pE>.5?'#111':'#f4e747');
-    eR.setAttribute('opacity',(pE*.6).toFixed(3));eR.setAttribute('transform','scale('+(1+(1-pE)*.0+(pE>0?(1-pE)*.9:0)).toFixed(3)+')');
-    /* client node */
-    cB.setAttribute('transform','scale('+(1+pC*.12).toFixed(3)+')');
-    cR.setAttribute('opacity',(pC*.7).toFixed(3));cR.setAttribute('transform','scale('+(1+(1-pC)*.9).toFixed(3)+')');
-    const d2=Math.min(1,Math.max(0,chipD));
-    if(chipN>=0&&chipD<1.4){
-      const e=chipD/1.4;cR2.setAttribute('opacity',((1-e)*.5).toFixed(3));cR2.setAttribute('transform','scale('+(1+e*1.5).toFixed(3)+')');
-      chip.setAttribute('opacity',(Math.min(1,chipD/.15)*(1-sm(.9,1.4,chipD))).toFixed(3));
-      chip.setAttribute('transform','translate(600 '+(70-(1-Math.pow(1-Math.min(1,chipD/.7),3))*22).toFixed(1)+')');
-    }else{cR2.setAttribute('opacity',0);chip.setAttribute('opacity',0)}
-    pipe.setAttribute('stroke-dashoffset',(-t*18).toFixed(1));
-    /* step labels light up with the flow */
-    st[0].style.setProperty('--on',1);
-    st[1].style.setProperty('--on',(.35+.65*pE).toFixed(3));
-    st[2].style.setProperty('--on',(.35+.65*pC).toFixed(3));
+  const f=$('#hqForm');if(!f)return;
+  /* Optional: URL of a small proxy that calls Claude (see chat-proxy.js). Leave '' to use the built-in answers. */
+  const CHAT_ENDPOINT='';
+  const WAN='919182419070';
+  const inp=$('#hqInput'),send=$('#hqSend'),open=$('#hqOpen'),mic=$('#hqMic'),thread=$('#hqThread'),msgs=$('#hqMsgs'),reset=$('#hqReset');
+  const WA=t=>({t:'Chat on WhatsApp',h:'https://wa.me/'+WAN+'?text='+encodeURIComponent(t||'Hi Alphex Studio, I\u2019d like a website quote.'),ext:1});
+  const QUOTE={t:'Get a free quote',h:'#contact'},PRICING={t:'See pricing',h:'#pricing',alt:1},WORK={t:'See concepts',h:'#work',alt:1};
+  const rx=(re,w=1)=>[re,w];
+
+  /* ---------- knowledge base (from the Alphex Studio site) ---------- */
+  const KB=[
+  {id:'hi',k:[rx(/^(hi|hello|hey|hii+|namaste|good (morning|afternoon|evening)|yo)\b/,4)],
+   a:'Hi! I\u2019m the Alphex assistant. Ask me about **pricing, timelines, services, our process, AI add-ons** or how to get started.',
+   qr:['What are your prices?','How long does a website take?','What services do you offer?']},
+  {id:'thanks',k:[rx(/\b(thanks|thank you|thx|ty|great|awesome|perfect|cool)\b/,3),rx(/^(ok|okay|got it)\b/,3)],
+   a:'Happy to help! Anything else you\u2019d like to know about Alphex Studio?',act:[QUOTE]},
+  {id:'bye',k:[rx(/\b(bye|goodbye|see you|that'?s all)\b/,4)],a:'Thanks for stopping by! When you\u2019re ready, a free quote is one click away.',act:[QUOTE,WA()]},
+  {id:'whatsapp',k:[rx(/whats ?app/,4),rx(/\b(connect|integrat|link|route|button)\b/,1)],
+   a:'Yes, WhatsApp is built in. Every package includes a **WhatsApp button**, and our smart forms can route new leads to **WhatsApp, email or your CRM**. With the AI add-on, enquiries can also get automated follow-ups.',act:[WA('Hi Alphex Studio, I\u2019d like WhatsApp connected to my website.'),QUOTE]},
+  {id:'price',k:[rx(/\b(price|prices|pricing|cost|costs|how much|rate|rates|charge|charges|fee|fees|package|packages|plan|plans|expensive|cheap|afford)\b/,3)],
+   a:'Our packages start at:\n• **Landing Page** from ₹6,999 (3–5 days)\n• **Business Website** from ₹14,999 (up to 6 pages, 7–12 days)\n• **Growth Website** from ₹29,999 (up to 12 pages, 2–3 weeks)\n• **E-commerce Launch** from ₹39,999 (up to 30 products, 3–4 weeks)\n• **Custom Web App**: custom quote\n\nGST, domain, hosting and third-party tools may be extra. Founding clients get special launch pricing.',act:[QUOTE,PRICING],qr:['What is the founding-client offer?','What does the Business Website include?']},
+  {id:'p_landing',k:[rx(/(landing|one.?page|single.?page|funnel)/,3),rx(/\b(price|cost|how much|rate|include|cover|get)\b/,1)],
+   a:'The **Landing Page** package starts at **₹6,999**: 1 conversion-focused page, mobile-responsive design, lead form, WhatsApp button, basic on-page SEO and analytics setup. Delivery: **3–5 days**.',act:[QUOTE,PRICING]},
+  {id:'p_business',k:[rx(/(business|company|corporate|local business|brochure|5.?page|six|6.?page|multi.?page|small business)\b.*(site|website|web)/,4),rx(/(business website)/,4),rx(/\b(price|cost|how much|include|cover)\b/,1)],
+   a:'The **Business Website** starts at **₹14,999**: up to 6 pages, custom responsive design, contact/quote form, WhatsApp button, basic on-page SEO, Google Analytics and 1 revision round. Delivery: **7–12 days**.',act:[QUOTE,PRICING]},
+  {id:'p_growth',k:[rx(/(growth website|growth plan|growth package|12.?page|blog|cms)/,4)],
+   a:'The **Growth Website** starts at **₹29,999**: up to 12 pages, blog/CMS setup, advanced lead capture, SEO setup, speed optimisation and 2 revision rounds. Delivery: **2–3 weeks**.',act:[QUOTE,PRICING]},
+  {id:'ecom',k:[rx(/(e.?commerce|ecommerce|online (store|shop)|store|shop|shopify|woocommerce|sell (products|online)|cart|checkout|payment gateway)/,4)],
+   a:'Yes, we build online stores. The **E-commerce Launch** package starts at **₹39,999** and covers store setup, up to 30 products, payment gateway setup, shipping/tax configuration, product page design and basic training. Delivery: **3–4 weeks**.',act:[QUOTE,WORK],qr:['How long does an online store take?']},
+  {id:'webapp',k:[rx(/(web ?app|portal|dashboard|saas|booking system|crm|internal tool|custom (software|app|build)|api|role.?based|mobile app|app development)/,4)],
+   a:'Yes, we build **custom web apps and portals**: booking systems, customer portals, dashboards, internal tools, APIs, role-based access and integrations. These are priced with a **custom quote** based on scope.',act:[QUOTE,WA('Hi Alphex Studio, I\u2019d like a custom web app quote.')]},
+  {id:'time',k:[rx(/(how long|timeline|turnaround|delivery|deliver|how fast|how soon|deadline|duration|time (does|will|to)|days|weeks|quick|urgent|launch)/,3)],
+   a:'Typical delivery:\n• **Landing page:** 3–5 days\n• **Business website:** 7–12 days\n• **Growth website:** 2–3 weeks\n• **E-commerce store:** 3–4 weeks\n• **Custom projects:** depends on scope\n\nWe use AI to get concepts, wireframes and first drafts to you in days, not weeks.',act:[QUOTE]},
+  {id:'services',k:[rx(/(service|services|what (do|can) you (do|build|make|offer)|offer|capabilit|speciali[sz]e)/,3)],
+   a:'We offer:\n• **Website design & development**\n• **Landing pages & funnels**\n• **E-commerce development**\n• **UI/UX design**\n• **Web apps & portals**\n• **SEO, speed & maintenance**\n• **AI add-ons** (chatbot, smart lead routing, automated follow-ups)',act:[{t:'Our services',h:'#services'},QUOTE]},
+  {id:'ai',k:[rx(/\b(ai|a\.i\.|artificial|chatbot|chat bot|automation|automate|alphex ai|gpt|llm)\b/,4)],
+   a:'We use AI to speed up research, wireframes, copy drafts and development, and every site is **refined by hand** for your brand. We can also add **Alphex AI** to your site: an AI chat assistant that answers visitor questions and qualifies leads, smart forms routing to WhatsApp/email/CRM, automated follow-ups, analytics and content assistance. Launch clients get the AI chatbot at a discount.',act:[{t:'AI add-ons',h:'#process'},QUOTE]},
+  {id:'process',k:[rx(/(process|steps|how (do|does) (it|this) work|how do you work|workflow|approach|methodology|stages|get started|getting started|onboard)/,3)],
+   a:'Our process has 4 steps:\n1. **Discover:** we learn your business, customers, goals and competitors (project brief)\n2. **Plan & wireframe:** site structure, page flow and layout (sitemap)\n3. **Design & build:** desktop and mobile, with a live preview\n4. **Launch & grow:** testing, deployment and support, plus optional SEO and AI\n\nYou approve the structure, design direction and content **before** development begins.',act:[{t:'See the process',h:'#process',alt:1},QUOTE]},
+  {id:'founding',k:[rx(/(founding|launch offer|offer|discount|deal|special|early|first client|new (client|customer))/,4)],
+   a:'We\u2019ve just launched and are taking a **limited number of founding-client projects**. You get special launch pricing, priority delivery, direct communication with the founder, **free basic SEO setup**, and an optional AI chatbot at a launch discount. Availability is limited.',act:[{t:'Apply for a spot',h:'#contact'},PRICING]},
+  {id:'clients',k:[rx(/(client|clients|portfolio|case stud|previous work|past work|projects? (you|have)|examples?|sample|demo|reference|testimonial|reviews?|experience|track record|work you)/,3)],
+   a:'Alphex Studio is **newly launched**, so we don\u2019t have client projects to show yet, and we won\u2019t pass off demos as client work. What we do have are **concept designs** (a dental clinic site, a D2C store, a SaaS landing page and a salon booking site) that show our approach. Client projects will be added, with permission, after launch.',act:[WORK,QUOTE]},
+  {id:'redesign',k:[rx(/(redesign|revamp|re-?do|existing (site|website)|old (site|website)|improve (my|our)|upgrade|migrate|migration|refresh|rebuild)/,4)],
+   a:'Yes. We can improve your existing site\u2019s **design, speed, mobile experience, SEO and conversion flow** without losing your current content or search rankings.',act:[QUOTE,WA('Hi Alphex Studio, I\u2019d like to redesign my existing website.')]},
+  {id:'maint',k:[rx(/(maintenance|maintain|support|care plan|updates?|backups?|security|uptime|monitoring|after (launch|delivery)|post.?launch|hosting)/,3)],
+   a:'Yes. Our **care plans** cover updates, backups, security checks, uptime monitoring and content edits. Hosting and domain costs are separate third-party costs, and we can advise on the right setup.',act:[QUOTE]},
+  {id:'seo',k:[rx(/\b(seo|google|rank|ranking|search engine|speed|performance|core web|page ?speed|traffic|analytics)\b/,4)],
+   a:'Every package includes **basic on-page SEO** and analytics setup. Growth sites add full SEO setup and speed optimisation, and **SEO, speed & maintenance** is also available as an ongoing service for faster, search-ready sites.',act:[QUOTE]},
+  {id:'ui',k:[rx(/(ui|ux|user interface|user experience|figma|wireframe|mockup|design only|logo|brand(ing)?)/,3)],
+   a:'We do **UI/UX design** for websites, SaaS products, dashboards and mobile experiences: clear, intuitive interfaces, starting with wireframes and a sitemap you approve before development.',act:[QUOTE]},
+  {id:'rev',k:[rx(/(revision|revisions|changes|edit|edits|feedback rounds?|modify|tweak|amend)/,3)],
+   a:'The **Business Website** includes **1 revision round** and the **Growth Website** includes **2**. You also approve structure, design direction and content before development, so big changes are caught early.',act:[QUOTE]},
+  {id:'extra',k:[rx(/\b(gst|tax|domain|extra|additional|hidden|payment terms?|advance|deposit|installments?|emi|invoice|refund|contract|terms)\b/,3)],
+   a:'Final pricing depends on pages, features, content, integrations and platform. **GST, domain, hosting and third-party tool costs may be additional.** We share a fixed quote after understanding your requirements. For payment schedule details, message us and we\u2019ll confirm in writing.',act:[QUOTE,WA('Hi Alphex Studio, I have a question about payment terms.')]},
+  {id:'contact',k:[rx(/(contact|reach|talk|call|phone|email|e-?mail|whatsapp number|number|speak|meet|meeting|book|schedule|appointment|consult|founder|team|human|someone|person|address|location|office|where are you|based)/,3)],
+   a:'You can reach us at:\n• **WhatsApp:** +91 91824 19070\n• **Email:** team@alphexai.com\n• **Web:** alphexai.com\n\nOr send the quote form and we\u2019ll reply with a clear recommendation, timeline and estimate. For a call, message us on WhatsApp with a time that suits you.',act:[WA('Hi Alphex Studio, I\u2019d like to book a call.'),QUOTE]},
+  {id:'start',k:[rx(/(start|begin|create|build|make|need|want|looking for|get).*(project|website|site|page|store)/,3),rx(/(my project|my website|new website|new site)/,3),rx(/(quote|estimate|proposal)/,3)],
+   a:'Great, let\u2019s get your project going. Send the **free quote form** with your business, the service you need and a budget range, and we\u2019ll reply with a recommended structure, timeline and estimate. Prefer chatting? WhatsApp works too.',act:[QUOTE,WA()]},
+  {id:'who',k:[rx(/(who are you|what is alphex|about (you|alphex|us)|tell me about|what are you|your company|alphex studio|alphex ai)/,4)],
+   a:'**Alphex Studio** designs and builds fast, modern, conversion-focused websites for startups, local businesses and growing brands in India. We\u2019re a division of **Alphex AI**, and we combine AI speed with human craft.',act:[WORK,QUOTE]},
+  {id:'tech',k:[rx(/(tech stack|technology|technologies|react|next\.?js|wordpress|webflow|wix|framework|platform|cms|built with|code|language)/,4)],
+   a:'We pick the platform that fits your goals, budget and how you\u2019ll manage content (that\u2019s also why the platform affects the final quote). Tell us what you\u2019re building and we\u2019ll recommend the right approach.',act:[QUOTE,WA('Hi Alphex Studio, which platform would you recommend for my project?')]},
+  {id:'mobile',k:[rx(/(mobile|responsive|phone|tablet)/,3)],a:'Every site we build is **mobile-responsive** and checked across desktop and mobile before launch.',act:[QUOTE]},
+  {id:'ai_how',k:[rx(/(do you use ai|ai.?(built|generated|made)|written by ai)/,5)],
+   a:'Yes. AI speeds up our research, wireframes, content drafts and development. Our team **reviews, refines, tests and finalises every website** by hand.',act:[QUOTE]}
+  ];
+
+  const norm=s=>s.toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ').trim();
+  const budgetReply=q=>{
+    if(!/(budget|₹|rs\.?|inr|rupee|lakh|lac|\bk\b|under|around|about)/.test(q))return null;
+    let m=q.match(/(\d+(?:[.,]\d+)*)\s*(lakh|lac|l\b|k\b|thousand)?/);if(!m)return null;
+    let n=parseFloat(m[1].replace(/,/g,''));const u=m[2]||'';
+    if(/lakh|lac|^l$/.test(u))n*=1e5;else if(/^k$|thousand/.test(u))n*=1e3;
+    if(n<1000)return null;
+    const f=x=>'₹'+x.toLocaleString('en-IN');
+    let t;
+    if(n<6999)t='At '+f(n)+' you\u2019re just under our entry price: the **Landing Page** starts at ₹6,999. Message us about founding-client pricing and we\u2019ll see what\u2019s possible.';
+    else if(n<14999)t='With about '+f(n)+', a **Landing Page** (from ₹6,999) fits well. A full **Business Website** starts at ₹14,999.';
+    else if(n<29999)t='With about '+f(n)+', the **Business Website** (from ₹14,999, up to 6 pages) is a great fit.';
+    else if(n<39999)t='With about '+f(n)+', the **Growth Website** (from ₹29,999, up to 12 pages with blog/CMS) fits, and so does a Business Website with add-ons.';
+    else t='With about '+f(n)+', you can do an **E-commerce Launch** (from ₹39,999), a **Growth Website**, or a **custom web app**, depending on scope.';
+    return{a:t+'\n\nFinal pricing depends on scope, and GST/domain/hosting may be extra.',act:[QUOTE,PRICING]};
+  };
+  const FALLBACK={a:'I can only help with **Alphex Studio**: our services, pricing, timelines, process and AI add-ons. For anything else, or a tailored answer, the team is a message away.',
+    act:[WA('Hi Alphex Studio, I have a question.'),QUOTE],qr:['What are your prices?','What services do you offer?','How long does a website take?']};
+  function localAnswer(text){
+    const q=norm(text),b=budgetReply(q);if(b)return b;
+    let best=null,top=0;
+    for(const it of KB){let s=0;for(const[re,w]of it.k)if(re.test(q))s+=w;if(s>top){top=s;best=it}}
+    return top>=3?best:FALLBACK;
   }
-  if(rm){draw(7.1);return}
-  let t0=null,raf=0,vis=true;
-  const loop=ts=>{if(t0===null)t0=ts;draw(5.5+(ts-t0)/1000);raf=vis&&!document.hidden?requestAnimationFrame(loop):0};
-  const kick=()=>{if(!raf&&vis&&!document.hidden){t0=null;raf=requestAnimationFrame(loop)}};
-  if('IntersectionObserver'in window)new IntersectionObserver(es=>{vis=es[0].isIntersecting;kick()},{threshold:.05}).observe(root);
-  document.addEventListener('visibilitychange',kick);
-  draw(5.5);kick();
+
+  /* ---------- UI ---------- */
+  const hist=[];let busy=false,started=false;
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fmt=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+  const bottom=()=>{msgs.scrollTop=msgs.scrollHeight};
+  function bubble(cls,html){const d=document.createElement('div');d.className='hq-m '+cls;d.innerHTML=html;msgs.appendChild(d);bottom();return d}
+  function decorate(d,r){
+    if(r.act&&r.act.length){const w=document.createElement('div');w.className='hq-acts';
+      r.act.forEach(a=>{const l=document.createElement('a');l.textContent=a.t;l.href=a.h;if(a.alt)l.className='alt';if(a.ext){l.target='_blank';l.rel='noopener'}w.appendChild(l)});d.appendChild(w)}
+    if(r.qr&&r.qr.length){const w=document.createElement('div');w.className='hq-qr';
+      r.qr.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>ask(t);w.appendChild(b)});d.appendChild(w)}
+    bottom();
+  }
+  function begin(){
+    if(started)return;started=true;thread.hidden=false;f.classList.add('chat');
+    const r=KB[0];decorate(bubble('bot',fmt(r.a)),r);
+  }
+  async function remote(){
+    const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000);
+    try{
+      const res=await fetch(CHAT_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)}),signal:ctl.signal});
+      if(!res.ok)throw 0;const j=await res.json();return j&&j.reply?String(j.reply):null;
+    }catch(e){return null}finally{clearTimeout(to)}
+  }
+  async function ask(text){
+    text=(text||'').trim();if(!text||busy)return;
+    begin();busy=true;inp.value='';sync();
+    bubble('me',esc(text));hist.push({role:'user',content:text});
+    const t=bubble('bot','<span class="hq-dots"><i></i><i></i><i></i></span>');
+    const loc=localAnswer(text);
+    let live=null;
+    const wait=ms=>new Promise(r=>setTimeout(r,ms));
+    if(CHAT_ENDPOINT)live=await remote();else await wait(450+Math.min(700,text.length*9));
+    t.innerHTML=fmt(live||loc.a);
+    if(live)decorate(t,{act:[QUOTE,WA()]});else decorate(t,loc);
+    hist.push({role:'assistant',content:live||loc.a.replace(/\*\*/g,'')});
+    busy=false;inp.focus({preventScroll:true});
+  }
+  const sync=()=>{send.disabled=!inp.value.trim()||busy};
+  inp.addEventListener('input',sync);
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();f.requestSubmit()}});
+  f.addEventListener('submit',e=>{e.preventDefault();ask(inp.value)});
+  $$('.hq-chip[data-q]',f).forEach(b=>b.addEventListener('click',()=>ask(b.dataset.q)));
+  open.addEventListener('click',()=>{begin();inp.focus({preventScroll:true})});
+  reset.addEventListener('click',()=>{msgs.innerHTML='';hist.length=0;started=false;busy=false;thread.hidden=true;f.classList.remove('chat');inp.value='';sync()});
+  /* rotating placeholder */
+  const ph=['Can you connect WhatsApp','How much for a 5-page website?','Can you build an online store?','How fast can you launch?'];
+  let i=0;if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{if(document.activeElement===inp||inp.value||started)return;i=(i+1)%ph.length;inp.placeholder=ph[i]},3200);
+  /* voice dictation (where supported) */
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){mic.hidden=true;return}
+  let rec=null;
+  mic.addEventListener('click',()=>{
+    if(rec){rec.stop();return}
+    rec=new SR();rec.lang='en-IN';rec.interimResults=true;
+    mic.classList.add('rec');
+    rec.onresult=e=>{inp.value=[...e.results].map(r=>r[0].transcript).join(' ');sync()};
+    rec.onend=rec.onerror=()=>{mic.classList.remove('rec');rec=null};
+    rec.start();
+  });
 })();
 
 /* ===== cycling hero headline ===== */
