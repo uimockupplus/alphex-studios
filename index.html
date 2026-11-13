@@ -1049,9 +1049,88 @@ html:not(.js) .cyc-l:first-child .cwi{transform:none;opacity:1}
 }
 @media(prefers-reduced-motion:reduce){.fl-ic{background:var(--y)!important;color:#111!important;border-color:var(--y)!important}.fl-line::after{transform:scaleX(1)!important}.fl-chip{opacity:1!important}}
 /* ===== mobile pass ===== */
-/* grid/flex children may shrink below their content width */
+/* grid/flex children may shrink below their content width (prevents the hero being pushed off-screen) */
 .hero-grid{grid-template-columns:minmax(0,1fr)}
 .hero-grid>*,.hero-copy,.hq,.hq-box,.hq-row,.hq-chips{min-width:0;max-width:100%}
+img,video,canvas,svg{max-width:100%}
+html,body{overflow-x:clip}
+
+/* ---- phones & small tablets ---- */
+@media(max-width:760px){
+  /* hero chatbot */
+  .hq{gap:16px;margin-top:34px}
+  .hq-box{padding:14px 14px 12px;border-radius:26px}
+  .hq-box textarea{font-size:16px;line-height:1.4;min-height:52px;padding:2px 4px 0}
+  .hq-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;margin-top:8px}
+  .hq-chips{-webkit-mask-image:linear-gradient(90deg,#000 86%,transparent);mask-image:linear-gradient(90deg,#000 86%,transparent);padding-right:22px;scroll-snap-type:x proximity}
+  .hq-chip{scroll-snap-align:start}
+  .hq-tools{gap:8px}
+  .hq-ic{width:44px;height:44px}
+  .hq-ic svg{width:19px;height:19px}
+  .hq-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+  .hq-main{grid-column:1/-1;justify-content:center}
+  .hq-sec{justify-content:center;padding:0 12px;gap:8px;font-size:.95rem}
+  .hq-thread{margin:-2px -2px 10px}
+  .hq-msgs{max-height:min(300px,40svh);gap:8px}
+  .hq-m{max-width:94%;padding:10px 14px;font-size:.93rem;border-radius:18px}
+  .hq-acts a{height:40px}
+  .hq-qr button{height:38px}
+
+  /* motion library: 2-up grid instead of 18 stacked cards */
+  .mt-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .mt{padding:8px;border-radius:20px}
+  .mt-n{font-size:.72rem}
+
+  /* comfortable tap targets (>=44px) */
+  .text-link{display:inline-flex;align-items:center;min-height:44px}
+  .brand{min-height:44px;align-items:center}
+  .footer-col a{display:flex;align-items:center;min-height:44px;margin:0}
+  .footer-legal{gap:6px}
+  .footer-legal a{display:inline-flex;align-items:center;min-height:44px;padding:0 10px 0 0}
+  .faq summary,.faq-q,details>summary{min-height:48px}
+
+  /* readable micro-labels */
+  .num,.popular-label,.l3 span,p.mt-label,.vm{font-size:max(12px,1em)}
+  .l3 span{font-size:12px}
+  .num,.popular-label{font-size:12px}
+  p.mt-label{font-size:12px}
+}
+
+/* footer: two link columns side by side on phones */
+@media(max-width:560px){
+  .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px}
+  .footer-about,.footer-col:last-child{grid-column:1/-1}
+  .footer-bottom{flex-direction:column;gap:6px}
+}
+
+/* very small phones */
+@media(max-width:360px){
+  .container{width:calc(100% - 24px)}
+  .hq-chip{padding:0 14px;font-size:.86rem}
+  .hq-sec{font-size:.88rem;padding:0 8px}
+  .hq-main{font-size:1rem}
+  .btn{padding:0 20px}
+}
+
+/* short landscape phones */
+@media(max-height:480px) and (orientation:landscape){
+  .hero{min-height:0;padding-top:96px}
+  .dock{display:none}
+  .hq-msgs{max-height:34svh}
+}
+
+/* tablets */
+@media(min-width:761px) and (max-width:1060px){
+  .hq{width:min(100%,760px)}
+  .hq-chip{height:44px;padding:0 16px;font-size:.92rem}
+}
+
+/* touch devices: no hover-only affordances, bigger hit areas */
+@media(pointer:coarse){
+  .hq-chip,.hq-sec,.hq-main,.hq-qr button,.hq-head button{min-height:44px}
+  .hq-head button{padding:0 14px}
+  a,button,summary,select{touch-action:manipulation}
+}
 /* ===== /mobile pass ===== */
 </style>
 </head>
