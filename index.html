@@ -1048,6 +1048,11 @@ html:not(.js) .cyc-l:first-child .cwi{transform:none;opacity:1}
   .fl-cur{top:22px}
 }
 @media(prefers-reduced-motion:reduce){.fl-ic{background:var(--y)!important;color:#111!important;border-color:var(--y)!important}.fl-line::after{transform:scaleX(1)!important}.fl-chip{opacity:1!important}}
+/* ===== mobile pass ===== */
+/* grid/flex children may shrink below their content width */
+.hero-grid{grid-template-columns:minmax(0,1fr)}
+.hero-grid>*,.hero-copy,.hq,.hq-box,.hq-row,.hq-chips{min-width:0;max-width:100%}
+/* ===== /mobile pass ===== */
 </style>
 </head>
 <body>
