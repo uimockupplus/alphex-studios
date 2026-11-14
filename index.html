@@ -1186,10 +1186,9 @@ html,body{overflow-x:clip}
         <textarea id="hqInput" rows="2" placeholder="Can you connect WhatsApp" maxlength="400"></textarea>
         <div class="hq-row">
           <div class="hq-chips">
-            <button type="button" class="hq-chip hq-open" id="hqOpen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Open chat</button>
+            <button type="button" class="hq-chip hq-open" id="hqOpen" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="hqOpenPath" d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg><span id="hqOpenTxt">Open chat</span></button>
             <button type="button" class="hq-chip" data-q="I want to create my project">Create my project</button>
             <button type="button" class="hq-chip" data-q="What are your prices?">Pricing</button>
-            <button type="button" class="hq-chip" data-q="I want to book a call">Book a call</button>
             <button type="button" class="hq-chip" data-q="How can I contact Alphex?">Contact Alphex</button>
           </div>
           <div class="hq-tools">
@@ -1753,6 +1752,10 @@ $$('.hero,.section,.marquee').forEach(s=>offIO.observe(s));
 
   /* ---------- UI ---------- */
   const hist=[];let busy=false,started=false;
+  const openTxt=$('#hqOpenTxt'),openPath=$('#hqOpenPath');
+  const ICON_OPEN='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7',ICON_CLOSE='M18 6 6 18M6 6l12 12';
+  function setOpenUI(on){openTxt.textContent=on?'Close chat':'Open chat';openPath.setAttribute('d',on?ICON_CLOSE:ICON_OPEN);open.setAttribute('aria-pressed',String(on))}
+  function closeChat(){msgs.innerHTML='';hist.length=0;started=false;busy=false;thread.hidden=true;f.classList.remove('chat');inp.value='';sync();setOpenUI(false)}
   const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const fmt=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
   const bottom=()=>{msgs.scrollTop=msgs.scrollHeight};
@@ -1765,7 +1768,7 @@ $$('.hero,.section,.marquee').forEach(s=>offIO.observe(s));
     bottom();
   }
   function begin(){
-    if(started)return;started=true;thread.hidden=false;f.classList.add('chat');
+    if(started)return;started=true;thread.hidden=false;f.classList.add('chat');setOpenUI(true);
     const r=KB[0];decorate(bubble('bot',fmt(r.a)),r);
   }
   async function remote(){
@@ -1794,8 +1797,8 @@ $$('.hero,.section,.marquee').forEach(s=>offIO.observe(s));
   inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();f.requestSubmit()}});
   f.addEventListener('submit',e=>{e.preventDefault();ask(inp.value)});
   $$('.hq-chip[data-q]',f).forEach(b=>b.addEventListener('click',()=>ask(b.dataset.q)));
-  open.addEventListener('click',()=>{begin();inp.focus({preventScroll:true})});
-  reset.addEventListener('click',()=>{msgs.innerHTML='';hist.length=0;started=false;busy=false;thread.hidden=true;f.classList.remove('chat');inp.value='';sync()});
+  open.addEventListener('click',()=>{if(started){closeChat();return}begin();inp.focus({preventScroll:true})});
+  reset.addEventListener('click',closeChat);
   /* rotating placeholder */
   const ph=['Can you connect WhatsApp','How much for a 5-page website?','Can you build an online store?','How fast can you launch?'];
   let i=0;if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{if(document.activeElement===inp||inp.value||started)return;i=(i+1)%ph.length;inp.placeholder=ph[i]},3200);
