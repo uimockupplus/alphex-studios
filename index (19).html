@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alphex Studio | Grow beyond limits</title>
+<meta name="description" content="Alphex Studio designs fast, modern, conversion-focused websites for startups, local businesses, and growing brands in India.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alphex Studio | Grow beyond limits">
+<meta property="og:description" content="AI-assisted web design and development for startups, local businesses, and growing brands.">
+<meta property="og:url" content="https://studio.alphexai.com/">
+<meta name="theme-color" content="#f5f1e8">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5f1e8;--sand:#ebe5d6;--line:#d8d0bd;
+  --ink:#13131c;--mute:#5d5a68;
+  --ind:#1b1a4a;--ind2:#2b2a6b;--ind3:#cfcdf5;
+  --acc:#ff5b2e;--acc-d:#e24618;--mint:#2ec4a0;
+  --head:"Space Grotesk","Inter",system-ui,sans-serif;--body:"Inter",system-ui,Helvetica,Arial,sans-serif;--serif:"Instrument Serif",Georgia,serif;
+  --ease:cubic-bezier(.2,.8,.2,1);--gut:clamp(20px,5vw,88px);--max:1320px;--r:20px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+ul{list-style:none}
+svg{display:block}
+::selection{background:var(--acc);color:#fff}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-d)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--acc)}
+.h2{font-family:var(--head);font-weight:600;font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1.05;letter-spacing:-.035em;margin-top:14px}
+.h2 em.s{font-size:1.08em;color:var(--acc-d)}
+section{position:relative}
+.sec{padding:clamp(70px,9vw,130px) 0}
+
+/* progress */
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:var(--acc);z-index:100}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;font-family:var(--head);font-weight:600;font-size:1rem;cursor:pointer;transition:transform .3s var(--ease),background .25s,color .25s,box-shadow .3s}
+.btn:hover{transform:translateY(-2px)}
+.btn.pri{background:var(--acc);border-color:var(--acc);color:#fff;box-shadow:0 12px 28px -12px rgba(255,91,46,.8)}
+.btn.pri:hover{background:var(--acc-d);border-color:var(--acc-d)}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.dark:hover{background:var(--ind)}
+.btn.light{background:#fff;border-color:#fff;color:var(--ind)}
+.btn.sm{height:44px;padding:0 22px;font-size:.92rem}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* nav */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:90;transition:background .3s,box-shadow .3s,backdrop-filter .3s}
+header.nav.stuck{background:rgba(245,241,232,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav .in{max-width:var(--max);margin:auto;padding:14px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--head);font-weight:700;font-size:1.25rem;letter-spacing:-.02em}
+.brand svg{width:40px;height:40px}
+.brand small{display:block;font-weight:500;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);line-height:1}
+.links{display:flex;gap:4px;align-items:center}
+.links a{font-weight:500;font-size:.95rem;padding:8px 14px;border-radius:999px;color:var(--mute);transition:color .2s,background .2s}
+.links a:hover{color:var(--ink);background:var(--sand)}
+.links a.on{color:var(--ink);background:var(--sand);font-weight:600}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:none;cursor:pointer;place-items:center}
+.burger span,.burger span::before{display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:transform .3s}
+.burger span::before{content:"";position:absolute;top:6px;left:0}
+.drawer{position:fixed;inset:0;z-index:95;background:var(--ind);color:#fff;padding:90px var(--gut) 40px;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .5s var(--ease);visibility:hidden}
+.drawer.open{transform:none;visibility:visible}
+.drawer a{font-family:var(--head);font-weight:600;font-size:clamp(1.9rem,8vw,3rem);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.12);letter-spacing:-.03em}
+.drawer a:hover{color:var(--acc)}
+.drawer .x{position:absolute;right:var(--gut);top:20px;width:46px;height:46px;border-radius:50%;border:1.5px solid #fff;background:none;color:#fff;font-size:1.6rem;cursor:pointer}
+
+/* hero */
+.hero{padding:clamp(130px,16vw,190px) 0 clamp(60px,8vw,110px);overflow:hidden}
+.hero::before{content:"";position:absolute;z-index:0;right:-8%;top:-10%;width:min(760px,70vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,91,46,.22),rgba(255,91,46,0) 68%)}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,80px);align-items:center}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.85rem;font-weight:500}
+.chip b{background:var(--ind);color:#fff;font-family:var(--head);font-size:.7rem;letter-spacing:.1em;padding:4px 10px;border-radius:999px}
+.hero h1{font-family:var(--head);font-weight:600;font-size:clamp(2.7rem,6.6vw,5.9rem);line-height:.98;letter-spacing:-.045em;margin-top:22px}
+.hero h1 em.s{font-size:1.1em;color:var(--acc-d)}
+.hero .tag{margin-top:18px;font-family:var(--head);font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.85rem;color:var(--mute)}
+.hero .lead{margin-top:20px;max-width:520px;font-size:clamp(1.05rem,1.4vw,1.25rem);color:#33323f}
+.hero .btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.facts{display:flex;flex-wrap:wrap;gap:30px;margin-top:42px;padding-top:26px;border-top:1px solid var(--line)}
+.facts b{display:block;font-family:var(--head);font-weight:600;font-size:1.7rem;letter-spacing:-.03em}
+.facts span{font-size:.85rem;color:var(--mute)}
+.stage{position:relative;aspect-ratio:1/1.02;min-height:380px}
+.win{position:absolute;inset:6% 4% 8% 8%;background:#fff;border-radius:var(--r);border:1.5px solid var(--ink);box-shadow:12px 14px 0 var(--ind);overflow:hidden;transform:rotate(-2deg)}
+.win .bar{display:flex;gap:7px;align-items:center;padding:12px 16px;border-bottom:1.5px solid var(--ink);background:var(--sand)}
+.win .bar i{width:11px;height:11px;border-radius:50%;background:var(--acc)}.win .bar i:nth-child(2){background:#ffc545}.win .bar i:nth-child(3){background:var(--mint)}
+.win .bar u{margin-left:12px;flex:1;height:22px;border-radius:99px;background:#fff;border:1px solid var(--line);text-decoration:none;font-size:.7rem;display:flex;align-items:center;padding:0 12px;color:var(--mute)}
+.win .body{padding:clamp(16px,2.4vw,30px);display:grid;gap:14px}
+.sk{height:12px;border-radius:99px;background:var(--sand)}
+.sk.h{height:26px;width:72%;background:var(--ink);border-radius:8px}
+.sk.a{width:90%}.sk.b{width:64%}
+.sk.cta{height:34px;width:38%;background:var(--acc);border-radius:99px;margin-top:6px}
+.blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.blocks i{aspect-ratio:1/.9;border-radius:12px;background:var(--ind3)}.blocks i:nth-child(2){background:var(--acc);opacity:.9}.blocks i:nth-child(3){background:var(--ind);}
+.fl{position:absolute;background:#fff;border:1.5px solid var(--ink);border-radius:16px;padding:12px 16px;font-size:.82rem;box-shadow:6px 7px 0 var(--acc);display:flex;gap:12px;align-items:center;animation:float 6s ease-in-out infinite}
+.fl b{display:block;font-family:var(--head);font-size:.95rem;letter-spacing:-.01em}
+.fl small{color:var(--mute);font-size:.74rem}
+.fl .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--ind);flex:none}
+.fl .ic svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fl.f1{left:-2%;top:30%}
+.fl.f2{right:-3%;top:2%;box-shadow:6px 7px 0 var(--mint);animation-delay:-2s}
+.fl.f3{right:2%;bottom:0;box-shadow:6px 7px 0 var(--ind);animation-delay:-4s}
+.fl.f2 .ic{background:var(--mint)}.fl.f3 .ic{background:var(--acc)}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+/* ticker */
+.ticker{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:18px 0;border-block:1px solid var(--ink)}
+.ticker div{display:inline-flex;animation:tick 34s linear infinite}
+.ticker span{font-family:var(--head);font-weight:500;font-size:clamp(1.1rem,2vw,1.6rem);padding-right:48px;display:inline-flex;align-items:center;gap:48px}
+.ticker span::after{content:"";width:10px;height:10px;background:var(--acc);transform:rotate(45deg)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,110px)}
+.about .side{position:sticky;top:110px;align-self:start}
+.about p.big{font-family:var(--head);font-weight:500;font-size:clamp(1.4rem,2.5vw,2.2rem);line-height:1.3;letter-spacing:-.025em}
+.about p.big mark{background:none;color:var(--acc-d);font-family:var(--serif);font-style:italic;font-size:1.1em}
+.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.val{padding:24px;border-radius:var(--r);background:#fff;border:1px solid var(--line);transition:transform .4s var(--ease),border-color .3s}
+.val:hover{transform:translateY(-6px);border-color:var(--ink)}
+.val .n{font-family:var(--head);font-weight:600;font-size:.8rem;color:var(--acc-d);letter-spacing:.14em}
+.val h3{font-family:var(--head);font-weight:600;font-size:1.2rem;margin:10px 0 6px;letter-spacing:-.02em}
+.val p{font-size:.92rem;color:var(--mute)}
+
+/* services bento */
+.services{background:var(--sand)}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.sh p{max-width:420px;color:var(--mute)}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.bc{position:relative;grid-column:span 4;padding:clamp(24px,2.6vw,38px);border-radius:var(--r);background:var(--paper);border:1.5px solid var(--ink);display:flex;flex-direction:column;gap:12px;min-height:290px;overflow:hidden;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.bc:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.bc.w7{grid-column:span 7}.bc.w5{grid-column:span 5}.bc.w12{grid-column:span 12;min-height:0;flex-direction:row;align-items:center;gap:30px;flex-wrap:wrap}
+.bc.dk{background:var(--ind);color:#fff}.bc.dk p{color:#c9c7ee}
+.bc.ac{background:var(--acc);}.bc.ac p{color:#fff}
+.bc .ico{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--ink)}
+.bc.dk .ico{background:var(--acc)}.bc.ac .ico{background:var(--ink)}
+.bc .ico svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.bc .no{position:absolute;right:22px;top:20px;font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.14em;opacity:.55}
+.bc h3{font-family:var(--head);font-weight:600;font-size:clamp(1.4rem,2.2vw,2.1rem);letter-spacing:-.03em;line-height:1.1;margin-top:auto}
+.bc p{color:var(--mute);max-width:36ch;font-size:.98rem}
+.bc .mini{position:absolute;right:-12px;bottom:-14px;width:46%;opacity:.95}
+.bc.w12 h3{margin-top:0}.bc.w12 .ico{flex:none}.bc.w12 p{max-width:52ch}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;position:relative;border-top:1.5px solid var(--ink)}
+.st{padding:34px clamp(18px,2.4vw,40px) 10px;border-right:1px solid var(--line);position:relative}
+.st:last-child{border-right:0}
+.st::before{content:"";position:absolute;top:-8px;left:clamp(18px,2.4vw,40px);width:14px;height:14px;background:var(--acc);border:1.5px solid var(--ink);border-radius:50%}
+.st .ph{font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.14em;color:var(--acc-d)}
+.st h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2.6rem,4.6vw,4.4rem);line-height:1;letter-spacing:-.02em;margin:10px 0 22px}
+.st li{display:flex;gap:12px;padding:11px 0;border-top:1px dashed var(--line);font-size:1rem}
+.st li::before{content:"→";color:var(--acc-d);font-weight:700}
+
+/* mission */
+.mission{background:var(--ind);color:#fff;overflow:hidden}
+.mission::before{content:"";position:absolute;left:-10%;bottom:-40%;width:60vw;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,91,46,.35),transparent 65%)}
+.mission .wrap{position:relative}
+.mission .eyebrow{color:var(--ind3)}
+.mission blockquote{font-family:var(--head);font-weight:500;font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.035em;margin-top:22px;max-width:1100px}
+.mission blockquote em.s{color:var(--acc);font-size:1.1em}
+.mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:70px;border-top:1px solid rgba(255,255,255,.22)}
+.ms{padding:30px 24px 0 0}
+.ms+.ms{padding-left:28px;border-left:1px solid rgba(255,255,255,.22)}
+.ms b{display:block;font-family:var(--head);font-weight:600;font-size:clamp(2.4rem,5vw,4.6rem);letter-spacing:-.05em;line-height:1}
+.ms b em.s{color:var(--acc)}
+.ms span{display:block;margin-top:10px;color:#c9c7ee;font-size:1rem}
+
+/* pricing */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:10px}
+.pcard{position:relative;display:flex;flex-direction:column;padding:clamp(24px,2.2vw,34px);border-radius:var(--r);background:#fff;border:1.5px solid var(--ink);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.pcard:hover{transform:translate(-4px,-4px);box-shadow:8px 8px 0 var(--ink)}
+.pcard.hot{background:var(--ind);color:#fff;border-color:var(--ind);box-shadow:8px 8px 0 var(--acc)}
+.pcard.hot:hover{box-shadow:12px 12px 0 var(--acc)}
+.pcard h3{font-family:var(--head);font-weight:600;font-size:1.25rem;letter-spacing:-.02em}
+.pcard .from{margin-top:24px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.pcard.hot .from{color:#bdbbe6}
+.pcard .pr{font-family:var(--head);font-weight:600;font-size:clamp(2.2rem,3vw,3rem);letter-spacing:-.05em;line-height:1.1;margin-bottom:22px}
+.pcard ul{display:grid;gap:10px;margin-bottom:28px;flex:1;padding-top:20px;border-top:1px dashed var(--line)}
+.pcard.hot ul{border-color:rgba(255,255,255,.25)}
+.pcard li{display:flex;gap:10px;font-size:.94rem}
+.pcard li::before{content:"✓";color:var(--acc-d);font-weight:800}
+.pcard.hot li::before{color:var(--acc)}
+.pcard .btn{width:100%}
+.ptag{position:absolute;right:18px;top:-14px;background:var(--acc);color:#fff;font-family:var(--head);font-weight:600;font-size:.72rem;letter-spacing:.08em;padding:6px 14px;border-radius:99px;border:1.5px solid var(--ink)}
+.custom{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px;padding:22px 28px;border-radius:var(--r);border:1.5px dashed var(--ink);color:var(--mute)}
+.custom b{color:var(--ink);font-family:var(--head);font-size:1.1rem}
+.note{margin-top:16px;color:var(--mute);font-size:.86rem}
+.found{margin-top:70px;border-radius:28px;background:var(--acc);color:#fff;padding:clamp(30px,5vw,70px);display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;border:1.5px solid var(--ink)}
+.found::after{content:"";position:absolute;right:-80px;top:-80px;width:280px;aspect-ratio:1;border-radius:50%;border:40px solid rgba(255,255,255,.14)}
+.found h2{font-family:var(--head);font-weight:600;font-size:clamp(2rem,4.4vw,4rem);letter-spacing:-.04em;line-height:1}
+.found h2 em.s{color:var(--ind)}
+.found p{margin-top:16px;max-width:640px}
+.found ul{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.found li{padding:8px 16px;border-radius:99px;background:rgba(19,19,28,.18);font-size:.9rem;font-weight:500}
+.found>*{position:relative;z-index:1}
+
+/* faq */
+.faqs{background:var(--sand)}
+.faqs .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,110px)}
+.faqs .side{position:sticky;top:110px;align-self:start}
+.faqs .side p{margin-top:18px;color:var(--mute);max-width:34ch}
+details{border-bottom:1.5px solid var(--ink)}
+details:first-child{border-top:1.5px solid var(--ink)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;font-family:var(--head);font-weight:600;font-size:clamp(1.1rem,1.8vw,1.5rem);letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary i{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-style:normal;font-size:1.4rem;line-height:1;transition:transform .35s var(--ease),background .25s,color .25s}
+details[open] summary i{transform:rotate(45deg);background:var(--ink);color:#fff}
+details p{padding:0 60px 26px 0;color:#3b3a47;font-size:1.04rem}
+
+/* contact */
+.contact{background:var(--ind);color:#fff;overflow:hidden}
+.contact::before{content:"";position:absolute;right:-12%;top:-30%;width:55vw;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,91,46,.28),transparent 65%)}
+.contact .wrap{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,100px);align-items:start}
+.contact .eyebrow{color:var(--ind3)}
+.contact h2{font-family:var(--head);font-weight:600;font-size:clamp(2.2rem,4.6vw,4.2rem);letter-spacing:-.04em;line-height:1.04;margin-top:14px}
+.contact h2 em.s{color:var(--acc)}
+.contact p.sub{margin-top:18px;color:#c9c7ee;max-width:44ch}
+.reach{margin-top:34px;display:grid;gap:12px}
+.reach a{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:16px;border:1px solid rgba(255,255,255,.22);transition:background .25s,transform .3s var(--ease)}
+.reach a:hover{background:rgba(255,255,255,.08);transform:translateX(6px)}
+.reach i{flex:none;width:44px;height:44px;border-radius:12px;background:var(--acc);display:grid;place-items:center}
+.reach svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reach small{display:block;color:#bdbbe6;font-size:.78rem}
+.reach span{font-family:var(--head);font-weight:600;font-size:1.1rem}
+form{background:var(--paper);color:var(--ink);border-radius:28px;padding:clamp(24px,3.4vw,46px);border:1.5px solid var(--ink);box-shadow:10px 10px 0 var(--acc)}
+form .f{margin-bottom:4px}
+form label.vis{display:block;font-family:var(--head);font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:12px 0 4px}
+form input,form select,form textarea{width:100%;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;font-size:1rem;outline:0;transition:border-color .2s,box-shadow .2s}
+form select{appearance:none;-webkit-appearance:none;cursor:pointer;color:#8b8798;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' fill='none' stroke='%2313131c' stroke-width='2'%3E%3Cpath d='M1 1l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+form select:valid{color:var(--ink)}
+form textarea{resize:vertical;min-height:130px}
+form input::placeholder,form textarea::placeholder{color:#9b97a8}
+form input:focus,form select:focus,form textarea:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(255,91,46,.18)}
+form [aria-invalid="true"]{border-color:#d93a3a}
+form .err{display:block;color:#c42b2b;font-size:.8rem;min-height:1.1em;padding-left:4px;margin-top:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.sendrow{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;flex-wrap:wrap}
+.sendrow small{font-size:.85rem;color:var(--mute);max-width:330px}
+.status{margin-top:18px;padding:14px 18px;border-radius:12px;background:#fff3ec;border:1px solid var(--acc);font-size:.95rem}.status[hidden]{display:none}
+.status a{color:var(--acc-d);text-decoration:underline;font-weight:600}
+
+/* footer */
+footer{background:var(--ink);color:#fff;padding:80px 0 30px}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px}
+.fg .brand{color:#fff}.fg .brand small{color:#9d9aae}
+.fg p.about{margin-top:20px;color:#bcb9c9;max-width:34ch}
+.fg h3{font-family:var(--head);font-weight:600;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin-bottom:18px}
+.fg li a{display:inline-block;padding:7px 0;color:#e7e4f1;transition:color .2s,transform .3s var(--ease)}
+.fg li a:hover{color:var(--acc);transform:translateX(4px)}
+.soc{display:flex;gap:10px;margin-top:22px}
+.soc a{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;transition:background .25s,border-color .25s}
+.soc a:hover{background:var(--acc);border-color:var(--acc)}
+.soc svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fbot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16);font-size:.9rem;color:#a9a6ba}
+.legal{display:flex;gap:22px;flex-wrap:wrap}.legal a:hover{color:#fff}
+
+/* chat */
+.chat-fab{position:fixed;z-index:70;right:22px;bottom:22px;width:64px;height:64px;border-radius:50%;background:var(--acc);border:1.5px solid var(--ink);cursor:pointer;display:grid;place-items:center;box-shadow:4px 5px 0 var(--ink);transition:transform .3s var(--ease)}
+.chat-fab:hover{transform:translate(-2px,-2px) rotate(-6deg)}
+.chat-fab svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.chat{position:fixed;z-index:71;right:22px;bottom:100px;width:min(390px,calc(100vw - 32px));height:min(540px,calc(100svh - 140px));display:none;flex-direction:column;background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:8px 9px 0 var(--ink)}
+.chat.open{display:flex}
+.ch{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:var(--ind);color:#fff;font-family:var(--head);font-weight:600}
+.ch button{background:none;border:0;cursor:pointer;font-size:1.5rem;line-height:1;color:#fff}
+.cm{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:88%;padding:11px 15px;border-radius:16px;font-size:.93rem;line-height:1.5}
+.m.bot{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.m.me{background:var(--ind);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.m a.cta{display:inline-block;margin-top:8px;margin-right:6px;padding:7px 14px;border-radius:99px;background:var(--acc);color:#fff;font-weight:600;font-size:.85rem}
+.qr{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.qr button{border:1.5px solid var(--ink);background:none;border-radius:99px;padding:6px 12px;font-size:.8rem;cursor:pointer}.qr button:hover{background:var(--sand)}
+.cf{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}
+.cf input{flex:1;background:var(--paper);border:1.5px solid var(--line);border-radius:99px;padding:11px 16px;outline:0;font-size:.95rem}
+.cf input:focus{border-color:var(--ink)}
+.cf button{background:var(--ink);color:#fff;border:0;border-radius:99px;padding:0 20px;cursor:pointer;font-weight:600}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:1100px){
+  .links,.nav .btn{display:none}
+  .burger{display:grid}
+  .hero .wrap{grid-template-columns:1fr}
+  .stage{max-width:560px;margin:20px auto 0;width:100%}
+  .about .wrap,.faqs .wrap,.contact .wrap{grid-template-columns:1fr}
+  .about .side,.faqs .side{position:static}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}
+  .bc,.bc.w7,.bc.w5{grid-column:span 6}
+}
+@media(max-width:760px){
+  .vals{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr;border-top:0;border-left:1.5px solid var(--ink);margin-left:7px}
+  .st{border-right:0;border-bottom:1px solid var(--line);padding:30px 0 20px 28px}
+  .st::before{top:34px;left:-8px}
+  .mstats{grid-template-columns:1fr}.ms+.ms{padding-left:0;border-left:0;border-top:1px solid rgba(255,255,255,.22);margin-top:26px}
+  .found{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .bc,.bc.w7,.bc.w5,.bc.w12{grid-column:span 12;min-height:240px}
+  .bc.w12{flex-direction:column;align-items:flex-start}
+  details p{padding-right:0}
+}
+@media(max-width:560px){
+  .pgrid{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}
+  .fl.f1{left:0}.fl.f2{right:0}
+  .facts{gap:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div class="prog" id="prog" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="in">
+    <a class="brand" href="#home" aria-label="Alphex Studio home">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#13131c" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M32 4 56 18v28L32 60 8 46V18z"/><path d="M20 44 32 20l12 24M25.500 36h13" stroke="#ff5b2e"/></svg>
+      <span>Alphex<small>Studio</small></span>
+    </a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="#home" class="on">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn pri sm" href="#contact">Get a quote</a>
+    <button class="burger" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="x" id="menuX" aria-label="Close menu">×</button>
+  <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+</div>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div>
+      <span class="chip"><b>NEW</b> Now taking founding-client projects</span>
+      <h1>Websites that turn <em class="s">clicks</em> into clients.</h1>
+      <p class="tag">Grow beyond limits</p>
+      <p class="lead">We build fast, modern websites and AI add-ons that turn clicks into clients, for startups, local businesses and growing brands.</p>
+      <div class="btns"><a class="btn pri" href="#contact">Let’s Talk <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn" href="#services">Our Services</a></div>
+      <div class="facts">
+        <div><b>3–5 days</b><span>Landing page delivery</span></div>
+        <div><b>₹6,999</b><span>Starting price</span></div>
+        <div><b>AI + human</b><span>Built fast, reviewed by our team</span></div>
+      </div>
+    </div>
+    <div class="stage" aria-hidden="true">
+      <div class="win">
+        <div class="bar"><i></i><i></i><i></i><u>yourbusiness.in</u></div>
+        <div class="body">
+          <div class="sk h"></div><div class="sk a"></div><div class="sk b"></div><div class="sk cta"></div>
+          <div class="blocks"><i></i><i></i><i></i></div>
+          <div class="sk a"></div><div class="sk b"></div>
+        </div>
+      </div>
+      <div class="fl f1"><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 21l1.700-5A8.500 8.500 0 1 1 8 19.300z"/></svg></span><div><b>New enquiry</b><small>via WhatsApp · just now</small></div></div>
+      <div class="fl f2"><span class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><div><b>Fast loading</b><small>Speed-optimised build</small></div></div>
+      <div class="fl f3"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 19V5M4 19h16M8 15l4-4 3 3 5-6"/></svg></span><div><b>More leads</b><small>Forms + analytics set up</small></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>Websites</span><span>Landing Pages</span><span>E-commerce</span><span>Web Apps</span><span>UI / UX</span><span>SEO</span><span>AI Add-ons</span>
+  <span>Websites</span><span>Landing Pages</span><span>E-commerce</span><span>Web Apps</span><span>UI / UX</span><span>SEO</span><span>AI Add-ons</span>
+</div></div>
+
+<!-- ABOUT -->
+<section class="about sec" id="about">
+  <div class="wrap">
+    <div class="side rv"><span class="eyebrow">About us</span><h2 class="h2">Ideas into websites that <em class="s">perform.</em></h2></div>
+    <div class="rv">
+      <p class="big">At Alphex Studio we turn ideas into websites that perform. From landing pages to online stores and custom web apps, we craft digital experiences that are <mark>fast, thoughtful,</mark> and built to win you customers. Whether you are launching something new or levelling up your look, we bring clarity, style and purpose to every pixel.</p>
+      <div class="vals">
+        <div class="val"><span class="n">01</span><h3>Clarity</h3><p>Clear structure and messaging that visitors understand in seconds.</p></div>
+        <div class="val"><span class="n">02</span><h3>Style</h3><p>Modern, mobile-first design that builds trust with your audience.</p></div>
+        <div class="val"><span class="n">03</span><h3>Purpose</h3><p>Every page, form and button is built to generate enquiries.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services sec" id="services">
+  <div class="wrap">
+    <div class="sh rv"><div><span class="eyebrow">Services</span><h2 class="h2">Everything you need to <em class="s">grow online.</em></h2></div><p>From a single landing page to a full web app, one team handles design, build, launch and care.</p></div>
+    <div class="bento">
+      <article class="bc dk w7 rv"><span class="no">01</span><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14l-2 2 2 2M16 14l2 2-2 2"/></svg></span><h3>Website Design &amp; Development</h3><p>Modern, mobile-friendly websites that build trust and generate enquiries.</p>
+        <svg class="mini" viewBox="0 0 220 150" aria-hidden="true"><rect x="10" y="10" width="200" height="130" rx="12" fill="#2b2a6b"/><rect x="10" y="10" width="200" height="24" rx="12" fill="#3a3990"/><rect x="28" y="52" width="80" height="12" rx="6" fill="#ff5b2e"/><rect x="28" y="74" width="110" height="8" rx="4" fill="#8b89d4"/><rect x="28" y="90" width="90" height="8" rx="4" fill="#8b89d4"/><rect x="146" y="50" width="48" height="70" rx="10" fill="#cfcdf5"/></svg></article>
+      <article class="bc w5 rv" style="--d:.08s"><span class="no">02</span><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></span><h3>Landing Pages &amp; Funnels</h3><p>High-converting pages for ads, offers, product launches, and lead campaigns.</p></article>
+      <article class="bc ac rv"><span class="no">03</span><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 7h14l-1.500 9H8z"/><path d="M6 7 5 3H2"/><circle cx="9" cy="20" r="1.500"/><circle cx="17" cy="20" r="1.500"/></svg></span><h3>E-commerce Development</h3><p>Online stores with smooth browsing, checkout, payments, and order management.</p></article>
+      <article class="bc rv" style="--d:.08s"><span class="no">04</span><span class="ico"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2M3 8l2 2-2 2M21 8l-2 2 2 2"/></svg></span><h3>UI/UX Design</h3><p>Clear, intuitive interfaces for websites, SaaS products, dashboards, and mobile.</p></article>
+      <article class="bc rv" style="--d:.16s"><span class="no">05</span><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12M13 15l2-2 2 2"/></svg></span><h3>Web Apps &amp; Portals</h3><p>Booking systems, customer portals, dashboards, and internal tools.</p></article>
+      <article class="bc w12 rv"><span class="no">06</span><span class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5M8 12l2-2 2 1 2-3"/></svg></span><h3>SEO, Speed &amp; Care</h3><p>Faster-loading, search-ready websites with ongoing care and support.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec" id="process">
+  <div class="wrap">
+    <div class="rv"><span class="eyebrow">Our approach</span><h2 class="h2">Three phases. <em class="s">Zero guesswork.</em></h2></div>
+    <div class="steps">
+      <article class="st rv"><span class="ph">01 / DISCOVER</span><h3>Ideate</h3><ul><li>Business &amp; audience discovery</li><li>Competitor review</li><li>Project brief</li><li>Sitemap &amp; wireframes</li><li>Conversion-focused layout</li><li>Your approval before build</li></ul></article>
+      <article class="st rv" style="--d:.1s"><span class="ph">02 / BUILD</span><h3>Develop</h3><ul><li>Design &amp; development</li><li>Mobile-first responsive build</li><li>Forms &amp; WhatsApp integration</li><li>On-page SEO &amp; analytics</li><li>Speed optimisation</li><li>Live preview</li></ul></article>
+      <article class="st rv" style="--d:.2s"><span class="ph">03 / GROW</span><h3>Grow</h3><ul><li>Testing &amp; go-live</li><li>AI chat assistant add-on</li><li>Smart lead routing</li><li>Automated follow-ups</li><li>Care plans &amp; maintenance</li><li>Analytics &amp; reporting</li></ul></article>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission sec">
+  <div class="wrap">
+    <span class="eyebrow">Our mission</span>
+    <blockquote class="rv">Our mission is to transform bold ideas into purposeful digital experiences by <em class="s">empowering brands</em> through design, innovation, and technology to create real world impact.</blockquote>
+    <div class="mstats">
+      <div class="ms"><b>3–5 <em class="s">days</em></b><span>Landing page delivery</span></div>
+      <div class="ms"><b><em class="s">₹</em>6,999</b><span>Starting price</span></div>
+      <div class="ms"><b>AI <em class="s">+</em> Human</b><span>Every site reviewed, tested and finalized by our team</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sh rv"><div><span class="eyebrow">Pricing</span><h2 class="h2">Clear starting prices. <em class="s">Fixed quotes.</em></h2></div><p>We share a fixed quote after understanding your requirements.</p></div>
+    <div class="pgrid">
+      <article class="pcard rv"><h3>Landing Page</h3><p class="from">Starting from</p><p class="pr">₹6,999</p><ul><li>1 conversion-focused page</li><li>Mobile responsive design</li><li>Lead form</li><li>WhatsApp button</li><li>Basic on-page SEO</li><li>Analytics setup</li><li>Delivery: 3–5 days</li></ul><a class="btn sm" href="#contact">Get a Custom Quote</a></article>
+      <article class="pcard hot rv" style="--d:.08s"><span class="ptag">Most Popular</span><h3>Business Website</h3><p class="from">Starting from</p><p class="pr">₹14,999</p><ul><li>Up to 6 pages</li><li>Custom responsive design</li><li>Contact/quote form</li><li>WhatsApp button</li><li>Basic on-page SEO</li><li>Google Analytics</li><li>1 revision round</li><li>Delivery: 7–12 days</li></ul><a class="btn pri sm" href="#contact">Get a Custom Quote</a></article>
+      <article class="pcard rv" style="--d:.16s"><h3>Growth Website</h3><p class="from">Starting from</p><p class="pr">₹29,999</p><ul><li>Up to 12 pages</li><li>Blog/CMS setup</li><li>Advanced lead capture</li><li>SEO setup</li><li>Speed optimization</li><li>2 revision rounds</li><li>Delivery: 2–3 weeks</li></ul><a class="btn sm" href="#contact">Get a Custom Quote</a></article>
+      <article class="pcard rv" style="--d:.24s"><h3>E-commerce Launch</h3><p class="from">Starting from</p><p class="pr">₹39,999</p><ul><li>Store setup</li><li>Up to 30 products</li><li>Payment gateway setup</li><li>Shipping/tax configuration</li><li>Product page design</li><li>Basic training</li><li>Delivery: 3–4 weeks</li></ul><a class="btn sm" href="#contact">Get a Custom Quote</a></article>
+    </div>
+    <div class="custom rv"><b>Custom Web App — custom quote.</b> <span>Portals, dashboards, booking systems, APIs, role-based access, and integrations.</span></div>
+    <p class="note">Final pricing depends on pages, features, content, integrations, and platform. GST, domain, hosting, and third-party tool costs may be additional.</p>
+
+    <div class="found rv">
+      <div><h2>Founding-client <em class="s">offer</em></h2><p>We’re launching Alphex Studio and accepting a limited number of founding-client projects. Get a professionally designed, conversion-focused website at special launch pricing.</p>
+      <ul><li>Priority delivery</li><li>Direct line to the founder</li><li>Founding-client pricing</li><li>Free basic SEO setup</li><li>AI chatbot at a launch discount</li></ul></div>
+      <a class="btn light" href="#contact">Apply for a spot</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faqs sec" id="faq">
+  <div class="wrap">
+    <div class="side rv"><span class="eyebrow">FAQ</span><h2 class="h2">Questions, <em class="s">answered.</em></h2><p>Can’t find what you need? Message us on WhatsApp and we’ll reply quickly.</p></div>
+    <div class="rv">
+      <details><summary>How long does a website take?<i>+</i></summary><p>A landing page usually takes 3–5 days. A business website typically takes 7–12 days. E-commerce and custom projects depend on scope.</p></details>
+      <details><summary>How much does a website cost?<i>+</i></summary><p>Landing pages start at ₹6,999, business websites at ₹14,999, and e-commerce stores at ₹39,999. We share a fixed quote after understanding your requirements.</p></details>
+      <details><summary>Do you use AI to build websites?<i>+</i></summary><p>Yes. We use AI to speed up research, wireframes, content drafts, and development. Our team reviews, refines, tests, and finalizes every website.</p></details>
+      <details><summary>Do you have client projects yet?<i>+</i></summary><p>Alphex Studio is newly launched. We are currently accepting a limited number of founding-client projects. Our website, process, and concept designs demonstrate our approach; client projects will be added with permission after launch.</p></details>
+      <details><summary>Can you redesign my existing website?<i>+</i></summary><p>Yes. We can improve the design, speed, mobile experience, SEO, and conversion flow without losing your existing content or search rankings.</p></details>
+      <details><summary>Do you provide maintenance?<i>+</i></summary><p>Yes. Our care plans include updates, backups, security checks, uptime monitoring, and content edits.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact sec" id="contact">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Contact</span>
+      <h2>Ready to discuss <em class="s">your project</em> with us?</h2>
+      <p class="sub">Send the form and we’ll reply with a recommendation, timeline and estimate. Or reach us directly:</p>
+      <div class="reach">
+        <a href="mailto:team@alphexai.com"><i><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></i><div><small>Email</small><span>team@alphexai.com</span></div></a>
+        <a href="https://wa.me/919182419070?text=Hi%20Alphex%20Studio%2C%20I%27d%20like%20a%20website%20quote." target="_blank" rel="noopener"><i><svg viewBox="0 0 24 24"><path d="M3 21l1.700-5A8.500 8.500 0 1 1 8 19.300z"/><path d="M9 9c0 3 3 6 6 6l1.500-1.500-2-1-1 .8c-1-.4-2-1.400-2.400-2.400l.8-1-1-2z"/></svg></i><div><small>Chat on WhatsApp</small><span>+91 91824 19070</span></div></a>
+      </div>
+    </div>
+    <form id="qf" class="rv" novalidate>
+      <div class="f"><label class="vis" for="n">Your name*</label><input id="n" name="name" placeholder="Your name" autocomplete="name" required><span class="err" id="e-n"></span></div>
+      <div class="f"><label class="vis" for="e">Your email*</label><input id="e" name="email" type="email" placeholder="you@company.com" autocomplete="email" required><span class="err" id="e-e"></span></div>
+      <div class="two">
+        <div class="f"><label class="vis" for="p">Phone / WhatsApp*</label><input id="p" name="phone" type="tel" placeholder="+91 …" autocomplete="tel" required><span class="err" id="e-p"></span></div>
+        <div class="f"><label class="vis" for="b">Business name*</label><input id="b" name="business" placeholder="Business name" autocomplete="organization" required><span class="err" id="e-b"></span></div>
+      </div>
+      <div class="two">
+        <div class="f"><label class="vis" for="s">Service needed*</label><select id="s" required><option value="" selected disabled>Select a service</option><option>Website Design &amp; Development</option><option>Landing Page</option><option>E-commerce Website</option><option>Website Redesign</option><option>UI/UX Design</option><option>Web App / Portal</option><option>SEO &amp; Performance</option><option>Maintenance</option><option>AI Add-ons</option></select><span class="err" id="e-s"></span></div>
+        <div class="f"><label class="vis" for="bu">Budget range*</label><select id="bu" required><option value="" selected disabled>Select a budget</option><option>Under ₹10,000</option><option>₹10,000–₹25,000</option><option>₹25,000–₹50,000</option><option>₹50,000–₹1,00,000</option><option>₹1,00,000+</option><option>Not sure yet</option></select><span class="err" id="e-bu"></span></div>
+      </div>
+      <div class="f"><label class="vis" for="d">About project*</label><textarea id="d" placeholder="Tell us what you want to build…" minlength="15" required></textarea><span class="err" id="e-d"></span></div>
+      <div class="sendrow"><small>By sending this form I confirm that your details will only be used to respond to my enquiry.</small><button class="btn pri" type="submit">Send Message</button></div>
+      <div class="status" id="st" role="status" aria-live="polite" hidden></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="brand" href="#home"><svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M32 4 56 18v28L32 60 8 46V18z"/><path d="M20 44 32 20l12 24M25.500 36h13" stroke="#ff5b2e"/></svg><span>Alphex<small>Studio</small></span></a>
+        <p class="about">The smart way to build brands, craft digital experiences, and scale your business online.</p>
+        <div class="soc">
+          <a href="https://alphexai.com" aria-label="Alphex AI website"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></a>
+          <a href="https://wa.me/919182419070" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M3 21l1.700-5A8.500 8.500 0 1 1 8 19.300z"/><path d="M9 9c0 3 3 6 6 6l1.500-1.500-2-1-1 .8c-1-.4-2-1.400-2.400-2.400l.8-1-1-2z"/></svg></a>
+          <a href="mailto:team@alphexai.com" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>
+        </div>
+      </div>
+      <div><h3>Services</h3><ul><li><a href="#services">Website Design</a></li><li><a href="#services">Landing Pages</a></li><li><a href="#services">E-commerce</a></li><li><a href="#services">UI/UX Design</a></li><li><a href="#services">Web Apps &amp; Portals</a></li><li><a href="#services">SEO &amp; Maintenance</a></li></ul></div>
+      <div><h3>Quick links</h3><ul><li><a href="#about">About</a></li><li><a href="#process">Process</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h3>Contact</h3><ul><li><a href="mailto:team@alphexai.com">team@alphexai.com</a></li><li><a href="https://wa.me/919182419070" target="_blank" rel="noopener">+91 91824 19070</a></li><li><a href="https://alphexai.com">alphexai.com</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Alphex Studio. All rights reserved.</span>
+      <div class="legal"><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-service.html">Terms of Service</a><a href="https://alphexai.com">A division of Alphex AI</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- chat -->
+<button class="chat-fab" id="chatFab" aria-label="Open chat"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.800 7L3 21l2-5.500A8 8 0 1 1 21 12z"/></svg></button>
+<div class="chat" id="chat" role="dialog" aria-label="Alphex assistant">
+  <div class="ch"><span>Alphex assistant</span><button id="chatX" aria-label="Close chat">×</button></div>
+  <div class="cm" id="cm"></div>
+  <form class="cf" id="cf"><label class="sr" for="ci">Message</label><input id="ci" placeholder="Ask about pricing, timelines…" maxlength="300" autocomplete="off"><button type="submit">Send</button></form>
+</div>
+
+<script>
+(()=>{
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+
+/* drawer */
+const dr=$('#drawer'),mb=$('#menuBtn');
+const setMenu=o=>{dr.classList.toggle('open',o);dr.setAttribute('aria-hidden',String(!o));mb.setAttribute('aria-expanded',String(o));document.body.style.overflow=o?'hidden':''};
+mb.onclick=()=>setMenu(true);$('#menuX').onclick=()=>setMenu(false);$$('a',dr).forEach(a=>a.onclick=()=>setMenu(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false);$('#chat').classList.remove('open')}});
+
+/* scroll: progress, sticky nav, spy */
+const nav=$('#nav'),prog=$('#prog'),links=$$('.links a'),tg=links.map(a=>$(a.getAttribute('href')));
+function onScroll(){
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+  prog.style.transform='scaleX('+(max>0?y/max:0)+')';
+  nav.classList.toggle('stuck',y>20);
+  let on=0;tg.forEach((t,i)=>{if(t&&t.getBoundingClientRect().top<innerHeight*.4)on=i});links.forEach((a,i)=>a.classList.toggle('on',i===on));
+}
+let tk=false;addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(()=>{onScroll();tk=false})}},{passive:true});addEventListener('resize',onScroll);onScroll();
+
+/* reveal-in */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const d=getComputedStyle(e.target).getPropertyValue('--d');if(d)e.target.style.transitionDelay=d;e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* FAQ: one open at a time */
+$$('details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)$$('details').forEach(o=>{if(o!==d)o.open=false})}));
+
+/* form */
+const F=[['n','e-n',v=>v.trim().length>=2,'Please enter your name.'],['e','e-e',v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Please enter a valid email.'],['p','e-p',v=>v.replace(/\D/g,'').length>=8,'Please enter a valid number.'],['b','e-b',v=>v.trim().length>=2,'Please enter your business name.'],['s','e-s',v=>!!v,'Select a service.'],['bu','e-bu',v=>!!v,'Select a budget.'],['d','e-d',v=>v.trim().length>=15,'Add at least 15 characters.']];
+const chk=f=>{const i=document.getElementById(f[0]),ok=f[2](i.value);document.getElementById(f[1]).textContent=ok?'':f[3];i.setAttribute('aria-invalid',String(!ok));return ok};
+F.forEach(f=>{const i=document.getElementById(f[0]);i.addEventListener('blur',()=>chk(f));i.addEventListener('input',()=>{if(i.getAttribute('aria-invalid')==='true')chk(f)})});
+$('#qf').addEventListener('submit',e=>{e.preventDefault();const st=$('#st');st.hidden=true;
+  if(F.map(chk).includes(false)){st.textContent='Please check the highlighted fields.';st.hidden=false;return}
+  const v=id=>document.getElementById(id).value.trim();
+  const msg="Hi Alphex Studio, I'd like a website quote.\n\nName: "+v('n')+"\nBusiness: "+v('b')+"\nEmail: "+v('e')+"\nPhone: "+v('p')+"\nService: "+v('s')+"\nBudget: "+v('bu')+"\n\nProject: "+v('d');
+  const wa='https://wa.me/919182419070?text='+encodeURIComponent(msg),mail='mailto:team@alphexai.com?subject='+encodeURIComponent('Website quote request - '+v('b'))+'&body='+encodeURIComponent(msg);
+  st.textContent='Thanks! Opening WhatsApp with your details. If nothing opens, send it via ';
+  const a=document.createElement('a');a.href=wa;a.target='_blank';a.rel='noopener';a.textContent='WhatsApp';const b=document.createElement('a');b.href=mail;b.textContent='email';st.append(a,' or ',b,'.');st.hidden=false;window.open(wa,'_blank','noopener')});
+
+/* chat */
+const WA=t=>'https://wa.me/919182419070?text='+encodeURIComponent(t||"Hi Alphex Studio, I'd like a website quote.");
+const KB=[
+ [/\b(hi|hello|hey|namaste)\b/,'Hi! Ask me about **pricing, timelines, services, process or AI add-ons**.',['What are your prices?','How long does it take?']],
+ [/(price|cost|how much|package|rate|fee)/,'Packages start at:\n• **Landing Page** ₹6,999 (3–5 days)\n• **Business Website** ₹14,999 (up to 6 pages, 7–12 days)\n• **Growth Website** ₹29,999 (up to 12 pages, 2–3 weeks)\n• **E-commerce Launch** ₹39,999 (3–4 weeks)\n• **Custom Web App**: custom quote\n\nGST, domain and hosting may be extra.',[],[['See pricing','#pricing']]],
+ [/(how long|timeline|deliver|days|weeks|fast|urgent)/,'Typical delivery: landing page **3–5 days**, business site **7–12 days**, growth site **2–3 weeks**, e-commerce **3–4 weeks**. Custom projects depend on scope.'],
+ [/(store|shop|e.?commerce|cart|checkout)/,'Yes, we build online stores. **E-commerce Launch** starts at **₹39,999**: store setup, up to 30 products, payment gateway, shipping/tax setup and training.'],
+ [/(service|offer|what do you)/,'We do website design & development, landing pages, e-commerce, UI/UX, web apps & portals, SEO/speed/maintenance and AI add-ons.',[],[['Our services','#services']]],
+ [/(\bai\b|chatbot|automation|whatsapp)/,'Every package includes a **WhatsApp button**. We can also add an **AI chat assistant**, smart lead routing to WhatsApp/email/CRM and automated follow-ups.'],
+ [/(process|steps|how do you work)/,'Three phases: **Ideate → Develop → Grow**. You approve structure, design and content before development begins.',[],[['See our process','#process']]],
+ [/(client|portfolio|example|work you)/,'We’re newly launched, so we don’t have client projects to show yet. We’re taking a limited number of **founding clients** at special launch pricing.',[],[['Apply','#contact']]],
+ [/(redesign|existing|revamp)/,'Yes, we can redesign your site: design, speed, mobile, SEO and conversion flow, without losing your content or rankings.'],
+ [/(contact|call|email|phone|talk|quote|start)/,'Reach us on **WhatsApp +91 91824 19070** or **team@alphexai.com**, or send the form below and we’ll reply with a recommendation, timeline and estimate.',[],[['Open the form','#contact']]]
+];
+const cm=$('#cm'),ci=$('#ci'),chat=$('#chat');let started=false;
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmt=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+function say(cls,html,qr,acts){const d=document.createElement('div');d.className='m '+cls;d.innerHTML=html;
+  (acts||[]).forEach(a=>{const l=document.createElement('a');l.className='cta';l.textContent=a[0];l.href=a[1];if(a[1][0]==='#')l.onclick=()=>chat.classList.remove('open');d.appendChild(l)});
+  if(qr&&qr.length){const w=document.createElement('div');w.className='qr';qr.forEach(t=>{const b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=()=>ask(t);w.appendChild(b)});d.appendChild(w)}
+  cm.appendChild(d);cm.scrollTop=cm.scrollHeight}
+function ask(t){t=t.trim();if(!t)return;say('me',esc(t));ci.value='';const q=t.toLowerCase();
+  let hit=KB.find(k=>k[0].test(q));
+  setTimeout(()=>{if(hit)say('bot',fmt(hit[1]),hit[2],hit[3]);else say('bot',fmt('I can help with **Alphex Studio** services, pricing, timelines and process. For anything else, message the team.'),['What are your prices?','What services do you offer?'],[['Chat on WhatsApp',WA()]])},350)}
+function openChat(){chat.classList.add('open');if(!started){started=true;say('bot',fmt(KB[0][1]),KB[0][2])}ci.focus()}
+$('#chatFab').onclick=()=>chat.classList.contains('open')?chat.classList.remove('open'):openChat();
+$('#chatX').onclick=()=>chat.classList.remove('open');
+$('#cf').onsubmit=e=>{e.preventDefault();ask(ci.value)};
+})();
+</script>
+</body>
+</html>
