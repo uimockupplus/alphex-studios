@@ -121,13 +121,22 @@ input[type=range]{accent-color:var(--ac);width:100%;padding:0;border:0;backgroun
 .st h3{font-size:clamp(2rem,4.4vw,3.6rem);margin-bottom:10px}.st p{color:var(--mut);max-width:520px}.st small{display:inline-block;margin-top:14px;font-size:13px;font-weight:500;padding:5px 13px;border-radius:99px;border:1px solid var(--line)}
 .pr{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}.pr .sticky{position:sticky;top:110px}
 /* pricing */
-.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
-.pl{position:relative;background:var(--card);border:1px solid var(--line);border-radius:calc(var(--r)*1.4);padding:32px 26px;display:flex;flex-direction:column;transition:transform .2s ease-out,box-shadow .35s;transform-style:preserve-3d;overflow:hidden}
-.pl::before{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--ac) 18%,transparent),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}.pl:hover::before{opacity:1}.pl:hover{box-shadow:var(--sh)}
-.pl.pop{background:var(--ink);color:var(--bg);border-color:var(--ink)}.pl.pop .mut{color:inherit;opacity:.7}
-.pl h3{font-size:1.35rem}.pl .pp{font:var(--hw) clamp(2.3rem,3.4vw,3rem) var(--ft);letter-spacing:-.05em;margin:20px 0 6px}.pl ul{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:11px;flex:1;font-size:15.5px}.pl li::before{content:"✓";color:var(--ac);font-weight:600;margin-right:10px}
-.pl .btn{width:100%;position:relative}.pl.pop .btn{background:linear-gradient(100deg,var(--ac),var(--ac2));color:#fff}.pl:not(.pop) .btn{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}.pl:not(.pop) .btn:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
-.tag{position:absolute;top:22px;right:20px;font-size:12px;font-weight:500;background:linear-gradient(100deg,var(--ac),var(--ac3));color:#fff;padding:5px 12px;border-radius:99px}
+.pk{--pk:var(--ac)}
+.sh.ph{align-items:flex-end;gap:30px;margin-bottom:60px}.sh.ph h2{font-size:clamp(2.4rem,6vw,5rem);max-width:none;letter-spacing:-.05em;line-height:1}.sh.ph p{max-width:380px;margin:0}
+.ptabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px;background:var(--bg2);border-radius:30px;margin-bottom:22px}
+.pt{all:unset;box-sizing:border-box;cursor:pointer;padding:18px 22px;border-radius:24px;display:grid;gap:2px;transition:background .3s,color .3s}
+.pt b{font:500 1.1rem var(--ft);letter-spacing:-.02em}.pt span{color:var(--mut);font-size:14px}
+.pt[aria-selected=true]{background:var(--ink);color:var(--bg)}.pt[aria-selected=true] span{color:inherit;opacity:.6}
+.pt:focus-visible{outline:3px solid var(--ac)}
+.pcard{border:1px solid var(--line);border-radius:40px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.pcard.sw{animation:cin .5s both}
+.pnm{display:flex;gap:12px;align-items:center;margin-bottom:8px}.pnm h3{font-size:1.8rem;letter-spacing:-.035em}
+.ptag{font-size:13px;font-weight:500;background:linear-gradient(100deg,var(--ac),var(--ac2));color:#fff;padding:4px 12px;border-radius:99px;line-height:1.6}
+.pbig{font:500 clamp(4rem,9vw,8rem)/.95 var(--ft);letter-spacing:-.05em;margin:22px 0 14px}
+.pdesc{margin:0 0 26px;color:var(--mut);max-width:360px;font-size:1.1rem}
+.pfl{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.pfl li{padding:18px 0;border-bottom:1px solid var(--line);font-size:1.1rem;display:flex;gap:14px;align-items:center}.pfl li:first-child{border-top:1px solid var(--line)}
+.pfl li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ac);flex:none}
 .pn2{margin-top:22px;color:var(--mut)}.pn2 a{color:var(--ink);border-bottom:1.5px solid var(--ac)}
 .fd{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.fq{background:var(--bg2);border:1px solid var(--line);border-radius:calc(var(--r)*1.6);padding:38px}.fq h3{font-size:1.5rem;margin-bottom:18px}.fq .ch2+h3{margin-top:30px}
 .ch2{display:flex;gap:10px;flex-wrap:wrap}.ch2 button{cursor:pointer;padding:11px 20px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:15px;font-weight:500;transition:.25s}.ch2 button:hover{border-color:var(--ink)}.ch2 button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
@@ -152,8 +161,8 @@ form{display:grid;gap:16px}.two{display:grid;grid-template-columns:1fr 1fr;gap:1
 .mm{display:none;position:fixed;inset:74px 0 0;background:var(--bg);padding:20px 24px;flex-direction:column;overflow:auto;z-index:99}nav.open .mm{display:flex}.mm a{font:var(--hw) 2rem var(--ft);letter-spacing:-.03em;padding:16px 0;border-bottom:1px solid var(--line)}.nr .btn{display:none}
 section{padding:80px 0}
 .hs{height:auto;padding:80px 0}.hin{position:static;height:auto;overflow:visible}.hh{padding:0 24px}.hc,.hbar{display:none}.trk{flex-direction:column;width:auto;padding:0 24px;transform:none!important}.pn{width:100%;height:auto;min-height:330px;opacity:1;transform:none}.pn .num{font-size:9rem}
-.pg,.fd,.fa,.cg,.pr{grid-template-columns:1fr}.pr .sticky{position:static}.mx{grid-template-columns:1fr 1fr}.plans{grid-template-columns:1fr 1fr}.dk,.ct{margin:0 10px;border-radius:32px}.ct{padding:44px 26px}}
-@media(max-width:620px){body{font-size:16px}.w{padding:0 18px}.two,.mx,.plans{grid-template-columns:1fr}.fq,.rs{padding:26px}.wf span{display:none}.wf{padding:14px}.meta .sd{display:none}.st{grid-template-columns:44px 1fr;gap:20px}.st b{width:44px;height:44px}.vt::before,.vt::after{left:21px}.pn{padding:26px}}
+.pg,.fd,.fa,.cg,.pr{grid-template-columns:1fr}.pr .sticky{position:static}.mx{grid-template-columns:1fr 1fr}.pcard{grid-template-columns:1fr;padding:32px;gap:30px}.ptabs{grid-template-columns:1fr 1fr}.dk,.ct{margin:0 10px;border-radius:32px}.ct{padding:44px 26px}}
+@media(max-width:620px){body{font-size:16px}.w{padding:0 18px}.two,.mx{grid-template-columns:1fr}.pbig{font-size:4.2rem}.fq,.rs{padding:26px}.wf span{display:none}.wf{padding:14px}.meta .sd{display:none}.st{grid-template-columns:44px 1fr;gap:20px}.st b{width:44px;height:44px}.vt::before,.vt::after{left:21px}.pn{padding:26px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}.ch{transform:none}.rv{opacity:1;transform:none}}
 </style>
 </head>
@@ -236,9 +245,10 @@ section{padding:80px 0}
   <div class="st"><b>4</b><div><h3>Launch &amp; care</h3><p>We go live, watch the results and keep everything running smoothly.</p><small>Ongoing support</small></div></div>
  </div></div></div></section>
 
-<section id="pricing" style="padding-top:40px"><div class="w">
- <div class="sh rv"><div><span class="eyebrow">Pricing</span><h2>Simple, fixed pricing.</h2></div><p class="mut">Prices in INR. Pick a plan and we will pre-fill your enquiry.</p></div>
- <div class="plans" id="plans"></div>
+<section id="pricing" class="pk" style="padding-top:40px"><div class="w">
+ <div class="sh ph rv"><h2>Simple pricing.</h2><p class="mut">Fixed prices in INR. Choose a plan to see what is included.</p></div>
+ <div class="ptabs" id="ptabs" role="tablist" aria-label="Pricing plans"></div>
+ <div class="pcard" id="pcard" role="tabpanel" aria-live="polite"></div>
  <p class="pn2">Need an app, portal or custom build? <a href="#contact" id="custom">Tell us about it</a> and we will quote after a free call.</p>
  <div style="margin-top:80px"><div class="sh rv" style="margin-bottom:34px"><div><span class="eyebrow">Plan finder</span><h2 style="font-size:clamp(2rem,4vw,3.2rem)">Not sure which plan?</h2></div><p class="mut">Two quick questions and we will point you to the right starting point.</p></div>
   <div class="fd rv"><div class="fq"><h3>What do you need?</h3><div class="ch2" id="q1"><button data-v="landing" aria-pressed="false">One page for an offer</button><button data-v="business" aria-pressed="true">A full business website</button><button data-v="growth" aria-pressed="false">To rank on Google and get leads</button><button data-v="shop" aria-pressed="false">To sell products online</button><button data-v="app" aria-pressed="false">An app or portal</button></div>
@@ -380,11 +390,18 @@ const PL=[
 {id:'business',n:'Business Website',pr:'₹14,999',d:'A full site for your growing business.',f:['Up to 6 pages','Custom UI design','SEO setup','1 month support'],s:'Website Design & Development',b:'₹10,000–₹25,000',t:'Two to four weeks',pop:1},
 {id:'growth',n:'Growth Website',pr:'₹29,999',d:'Built to rank and bring in leads.',f:['Up to 12 pages','Advanced SEO','Speed tuning','Analytics setup'],s:'Website Design & Development',b:'₹25,000–₹50,000',t:'Two to four weeks'},
 {id:'shop',n:'E-commerce Launch',pr:'₹39,999',d:'Start selling online with confidence.',f:['Product catalogue','Secure payments','Order management','Training session'],s:'E-commerce Website',b:'₹25,000–₹50,000',t:'Two to four weeks'}];
-$('#plans').innerHTML=PL.map((p,i)=>`<div class="pl rv${p.pop?' pop':''}" style="--d:${i*.08}s">${p.pop?'<span class="tag">Most popular</span>':''}<h3>${p.n}</h3><div class="pp">${p.pr}</div><p class="mut">${p.d}</p><ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><a class="btn" data-c="Pick" href="#contact" data-plan="${p.id}">Choose this plan</a></div>`).join('');
-$$('.pl').forEach(c=>{io.observe(c);c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');if(!RM&&e.pointerType==='mouse')c.style.transform=`perspective(900px) rotateX(${(.5-y)*9}deg) rotateY(${(x-.5)*9}deg) translateY(-6px)`});c.addEventListener('pointerleave',()=>c.style.transform='')});
+let cur='business';
+function renderPlans(anim){const p=PL.find(x=>x.id===cur);
+$('#ptabs').innerHTML=PL.map(x=>`<button class="pt" role="tab" id="pt-${x.id}" data-id="${x.id}" aria-selected="${x.id===cur}" aria-controls="pcard" tabindex="${x.id===cur?0:-1}"><b>${x.n}</b><span>${x.pr}</span></button>`).join('');
+const c=$('#pcard');c.setAttribute('aria-labelledby','pt-'+cur);
+c.innerHTML=`<div><div class="pnm"><h3>${p.n}</h3>${p.pop?'<span class="ptag">Most popular</span>':''}</div><div class="pbig">${p.pr}</div><p class="pdesc">${p.d}</p><a class="btn" data-c="Pick" href="#contact" data-plan="${p.id}">Choose this plan</a></div><ul class="pfl">${p.f.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+if(anim&&!RM){c.classList.remove('sw');void c.offsetWidth;c.classList.add('sw')}}
+renderPlans(false);
+$('#ptabs').addEventListener('click',e=>{const t=e.target.closest('.pt');if(!t||t.dataset.id===cur)return;cur=t.dataset.id;renderPlans(true);$('#pt-'+cur).focus()});
+$('#ptabs').addEventListener('keydown',e=>{const k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(!k)return;e.preventDefault();const i=(PL.findIndex(x=>x.id===cur)+k+PL.length)%PL.length;cur=PL[i].id;renderPlans(true);$('#pt-'+cur).focus()});
 const fm=$('#fm');
 function pick(id,extra){const p=PL.find(x=>x.id===id);if(!p)return;$('#fs').value=p.s;$('#fb').value=p.b;if(!fm.value||fm.dataset.auto){fm.value=`Plan: ${p.n} (${p.pr}).${extra?' '+extra:''}`;fm.dataset.auto=1}}
-$('#plans').onclick=e=>{const a=e.target.closest('[data-plan]');if(a)pick(a.dataset.plan)};
+$('#pcard').onclick=e=>{const a=e.target.closest('[data-plan]');if(a)pick(a.dataset.plan)};
 $('#custom').onclick=()=>{$('#fs').value='Web App / Portal'};
 $$('.ask').forEach(a=>a.onclick=()=>{$('#fs').value=a.dataset.s});
 /* ---------- plan finder ---------- */
